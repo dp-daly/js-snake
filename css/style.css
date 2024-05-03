@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../assets/origbig.png');
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+  }
+
+.container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.grass {
+    background-image: url('../assets/grass.jpg');
+    background-size: contain;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    height: 600px;
+    width: 700px;
+}
+
+.grass div {
+    border: 1px solid lightgrey;
+    height: 20%;
+    width: 20%;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: "DotGothic16", sans-serif;
+    color: rgb(231, 172, 84);
+}
+
+.grid div.sprite {
+    background-image: url('../assets/snake.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  } {
+
+}

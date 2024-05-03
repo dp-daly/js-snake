@@ -37,14 +37,12 @@ h1 {
     display: flex;
     justify-content: center;
     font-family: "DotGothic16", sans-serif;
+    font-size: 2.5em;
     color: rgb(231, 172, 84);
 }
 
-.grid div.sprite {
-    background-image: url('../assets/snake.png');
+.grass div.sprite {
+    background-image: url('../assets/snake-sprite.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
-  } {
-
-}
+} 

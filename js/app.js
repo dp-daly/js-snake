@@ -7,10 +7,14 @@ const width = 5
 /*-------------------------------- Variables --------------------------------*/
 
 let snakePosition = [12]
-let timer //place timer in global scope to update it from multiple functions
 let gameOver
 
+//We'll need a loop to place more than one part of the snake given that the
+//grid array can only taken one index value - see whiteboard
 cells[snakePosition].classList.add("sprite")
+
+let timer
+let lastKeyDown = "ArrowLeft"
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -26,19 +30,17 @@ function init() {
 
 init()
 
-//Next functionality: the snake has to continue in the direction of the input
-// ...There will need to be logic within setInterval that takes the last input 
-// direction and continues 'pushing the key' until another direction is chosen.
+//! Win: I had to revise the logic because conditionals were not working and
+//! required stacked events for one listener (which I'm not even sure is possible when trying
+//! to make use of the event).
+//! It turned out to be much easier to set the default value of the lastKeyDown variable
+//! to the default direction, have that direction updated by the event, then have the 
+//! interval take the value of lastKeyDown as its command. 
+//Lesson to consider what variables you may have to hand to store default/dynamically created values
 function autoMove() {
     timer = setInterval(() => {
-        moveSnake({key: "ArrowLeft"})
+        moveSnake({key: lastKeyDown})
     }, 1000)
-    //If arrow key pushed, set interval must continue to moveSnake in that
-    //direction
-    If 
-    //Should I pass a new event to autoMove or consider how to do the conditional
-    //logic in moveSnake? But I think it would mean I would have to create a new 
-    //interval, which can be tricky.
 }
 
 function render() {
@@ -67,10 +69,6 @@ function moveSnake(event) {
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-//Event helper function
-function doubleEvent() {
-    autoMove();
-    moveSnake();
-}
-
-document.addEventListener('keydown', moveSnake)
+document.addEventListener('keydown', (event) => {
+    lastKeyDown = event.key;
+})

@@ -5,15 +5,69 @@ const width = 5
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [12, 13, 14]
+const snakePosition = [12, 13, 14, 15]
+//desired: 7, 12, 13
+//actual: 7, 14, undefined
+// with minus 1 after recalling the index, we have the desired output
+// this is not replacing the position in the chain though... 
 let gameOver
+
+//! Next thing to try is storing the value of the if and using it for the moving of indexes..
+//! which iteration method can do that?
+
+// Next to try is centring on snake's head and storing previous position if possible
+
+let headIndex = snakePosition[0]
+let neckIndex = snakePosition[1]
+
+snakePosition.forEach((num, index, snakePosition) => {
+    if (headIndex) {
+        headIndex = num - width
+    } else if (neckIndex) {
+        neckIndex = headIndex - width
+    } else { 
+        snakePosition[index] = snakePosition[index+1]
+}})
+console.log(snakePosition)
+
+// This doesn't work.
+
+// ! .forEach()
+// snakePosition.forEach((num, index, snakePosition) => {
+//     if (index === 0) {
+//         snakePosition[index] = num - width;
+//     } else {
+//         snakePosition[index] = snakePosition[index] - 1
+//     }
+// })
+//console.log(snakePosition)
+
+
+// ! .map()
+// const newPosition = snakePosition.map((num, index) => {
+//     if (index === 0) {
+//         return num - width;
+//     }  
+//     if (index !== 0) {
+//         return snakePosition[index] - 1
+//     }
+// })
+
+// console.log(newPosition)
+
+// ! Decrementing:
+// for (let i = snakePosition.length - 1; i > 0; i--) {
+//     snakePosition[i] = snakePosition[i-1];
+//         if (i === 0) {
+//             snakePosition[i] = snakePosition[i] - width;
+//         }
+// }
+
+// console.log(snakePosition)
 
 //Sets default movement with interval, which is later altered in the autoMove function
 let timer
 let lastKeyDown = "ArrowLeft"
-
-//Snakehead variable
-let snakeHead
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -55,6 +109,17 @@ function render() {
 })
 }
 
+// const testArray = [10, 11, 12, 13, 14]
+// const newDirection = testArray.map((num, index) => {
+//     if (index === 0) {
+//         return num - width
+//     }
+//     if (index !== 0) {
+//         return testArray[index + 1]
+//     }
+// })
+
+
 function moveSnake(event) {
     let direction = 0
     if (event.key === "ArrowUp") {
@@ -91,168 +156,3 @@ document.addEventListener('keydown', (event) => {
 })
 
 
-
-/*---- Testing ---*/ 
-
-// ! Testing slither logic
-// let snakePosition = [11, 12, 13] 
-// with ONE move up after ONE interval, it should be [6, 11, 12]
-// In that one loop, we should have  LOOP 1: snakePosition[index] = bodyParts - width (HEAD) 
-//                                   LOOP2: snakePosition[index] = bodyParts -1 (Body)
-//                                   LOOP3: snakePosition[index] = bodyParts -1 (End)
-
-
-// Next consideration: This has to work both if the snake is coming from the right and left. 
-
-
-//Rather than differentiating between body and end...  
-//Each unit has to take the position of the previous unit and the final one has to be removed
-
-// Going up:
-// Head needs to be able to go up one and rather than the tail staying behind
-// each element needs to be able to take the position of the previous one.. 
-
-// [10, 11, 12, 13, 14]
-// [5, 10, 11, 12, 13] 
-
-// Test with arrays and think about embedding in rest of code later.
-
-// Going right:
-// Now the snake turns right..
-
-// [6, 5, 10, 11, 12]
-// [7, 6, 5, 10, 11]
-// [8, 7, 6, 5, 10]
-
-// Going up:
-// Now the snake goes up again..
-// [3, 8, 7, 6, 5]
-
-// firstTest - going up coming from the right 
-
-// const testArray = [10, 11, 12, 13, 14]
-// desired result: [5, 10, 11, 12, 13]
-
-// const newDirection = testArray.map((num, index) => {
-//     if (index === 0) {
-//         return num - width
-//     }
-//     if (index !== 0) {
-//         return num -1
-//     }
-// })
-
-// console.log(newDirection)
-
-//secondTest - going up coming from the left
-
-//Snake's head is at 13 and it wants to go up to 8
-
-//! Previous mostly successful test
-// const testArray = [13, 12, 11, 10]
-// //desired result: [8, 13, 12, 11]
-
-// const newDirection = testArray.map((num, index) => {
-//     if (index === 0) {
-//         return num - width;
-//     }
-//     // if (index === testArray.length - 1) {
-//     //     return num + 1
-//     // }
-//     if (index !== 0 && testArray[index +1] < num) {
-//         return num +1;
-//     } else {
-//         return num -1;
-//     }
-// })
-
-//returns: [8, 13, 12, 9]
-//The condition takes 13 and minuses 5 to get 8;
-//It takes 12 and pluses 1 to get 13
-//It takes 11 and pluses 1 to get 12
-//Then it takes 10, it can't check the condition so it minuses 1 (the else statement)
-//Need to add new condition at start to apply to final position in test
-//Added, and now there is the issue of differentiating that part of the rule still for left and right. 
-//We would need to use a forLoop if we wanted to limit the effect on the final number, but we'll still need it to either plus or minus. 
-
-//For loop test:
-// const testArray = [13, 12, 11, 10]
-// const testArray = [10, 11, 12, 13, 14]
-
-// let newDirection = []
-
-// for (let i = 0; i < testArray.length; i++) {
-//     if (i === 0) {
-//         newDirection.push(testArray[0] - width);
-//     } else {
-//         if (testArray[i] > testArray[i +1]) {
-//             newDirection.push(testArray[i] + 1);
-//         } else {
-//             newDirection.push(testArray[i] - 1);
-//         }
-//     }
-// }
-
-//Same issue, we need to be able to add in another condition to deal with the last index. 
-//Options: 
-// 1: food logic will also need to know whether or not to add an index of higher or lower than the value of the current final index -- so think of a global scope solution that can be drawn on later.
-//  
-
-
-//You would have to have a way of js knowing that the snake is coming from the right and therefore needs to be +1 instead of -1
-//Consider how to do this in a way that is relative to the info you already have
-
-// Wriggle movement:
-// Update 2:
-
-// Using map we can generate a new array with the right values.
-// However, we need to have logic that moves the array values 
-// up or down depending on the direction the snake is coming from.
-
-// i.e. 
-// Snake goes up coming from right
-// Head decreases by 5 (POTENTIAL BUG: would this instruction happen every interval...?)
-// body decreases by 1 each interval
-
-
-// Snake goes up coming from left
-// Head increase by 5
-// body increases by 1 each interval
-
-// Moreover, with conditional logic the last index will always default to the 'else' instruction as it has nothing to compare itself to in the array, so it will act oppositely to how we want.
-
-// There's a need for logic that says if you're the last one AND you're in a decrementing array, you have to minus one OR if you're the last one in an increasing array, you have to add one.
-
-// ON TOP OF THIS
-// We know that the food logic will always need an index to be added to the end of the array, but 
-// whether or not that value will be higher or lower is another question. We know a global scope solution will 
-// be needed then rather than something nested in conditional logic within moveSnake(). (Unless the variable 
-// being updated just sits in global scope). 
-
-// Two thoughts:
-// Using head value for a global scope solution
-// Checking if the grid array has any properties I can use
-
-// To keep it very simple:
-// We know the snake's head needs to jump up a row
-// Is there an iterator method that can push back or forward every value by 1?
-// Or simply take the position of the one that came before it?
-// When it comes to growth, it will also need to .push() the relevant value
-// to the end. 
-
-// We can use the index + 1 to refer to the next item in the array, which takes away the issue of worrying about its contents; 
-
-const testArray = [10, 11, 12, 13, 14]
-
-const newDirection = testArray.map((num, index) => {
-    if (index === 0) {
-        return index - width
-    }
-    if (index !== 0) {
-        return index + 1
-    }
-})
-
-console.log(newDirection)
-
-// This seems to work in making each value take on the previous value while moving the snake out of its last position without having to worry about the direction it is going up from. It also prevents us from needing to give an id number to the divs and continue to rely solely on index.

@@ -5,13 +5,13 @@ const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [42, 43, 44, 45, 46, 47, 48]
+const snakePosition = [4, 5, 6, 7, 8, 9]
 let headIndex
 let gameOver
 
 //Sets default movement with interval, which is later altered in the autoMove function
 let timer
-let lastKeyDown = "ArrowUp"
+let lastKeyDown = "ArrowDown"
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -21,7 +21,7 @@ const gameMessageEl = document.querySelector("#message")
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-    gameOver = false;
+    gameOver = true;
     playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
@@ -64,20 +64,21 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    snakePosition.forEach((bodyPart, index) => {
-        snakePosition[index] = bodyPart
-    })
     //Back to excalidraw and playing basic game, took hint about 'removing the last one' 
     //Using array methods (not iterator methods) to modify the array in place dynamically!
     //pop() removes the last value in the array
     snakePosition.pop();
-    //Unshift replaces the first position. I removed direction "+ direction" from the loop so 
-    //only the headIndex responds to the direction. This gives the signature snake slither and
-    //the necessary delay to allow it to more likely crash into itself (part of win/lose logic).
-    snakePosition.unshift(snakePosition[0] + direction)
+    //Unshift replaces the first position. I removed the loop which applied "+ direction"
+    //to every element so now only the headIndex responds to the direction. This gives the 
+    //signature snake slither and the necessary delay to allow it to more likely crash into
+    //itself (part of win/lose logic).
+    headIndex = snakePosition[0]
+    snakePosition.unshift(headIndex + direction)
     //Render is called immediately following the move conditional logic
     render();
 }
+//! Bug found: at the moment the snake can turn back on itself. May be able to
+//! fix this in logic that ends game when snake runs into itself/walls. 
 
 //Solid wall logic
 //! Top and bottom

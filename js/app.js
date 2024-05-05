@@ -1,13 +1,12 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const cells = document.querySelectorAll(".grass div")
-const width = 5
+const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [10, 11, 12]
-let headIndex 
-let tailIndex 
+const snakePosition = [42, 43, 44, 45, 46, 47, 48]
+let headIndex
 let gameOver
 
 //Sets default movement with interval, which is later altered in the autoMove function
@@ -35,7 +34,7 @@ init()
 function autoMove() {
     timer = setInterval(() => {
         moveSnake({key: lastKeyDown})
-    }, 1000)
+    }, 350)
 }
 
 function render() {
@@ -65,19 +64,20 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    //Updated to only move the snake's head
     snakePosition.forEach((bodyPart, index) => {
-        snakePosition[index] = bodyPart + direction
-        //Get position of head/tail dynamically - doesn't work
-        headIndex = snakePosition[0]
-        tailIndex = snakePosition[snakePosition.length -1]
+        snakePosition[index] = bodyPart
     })
+    //Back to excalidraw and playing basic game, took hint about 'removing the last one' 
+    //Using array methods (not iterator methods) to modify the array in place dynamically!
+    //pop() removes the last value in the array
+    snakePosition.pop();
+    //Unshift replaces the first position. I removed direction "+ direction" from the loop so 
+    //only the headIndex responds to the direction. This gives the signature snake slither and
+    //the necessary delay to allow it to more likely crash into itself (part of win/lose logic).
+    snakePosition.unshift(snakePosition[0] + direction)
     //Render is called immediately following the move conditional logic
     render();
 }
-
-console.log(headIndex)
-console.log(tailIndex)
 
 //Solid wall logic
 //! Top and bottom

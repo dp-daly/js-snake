@@ -46,3 +46,25 @@ h1 {
     background-repeat: no-repeat;
     background-size: contain;
 } 
+
+.game-over {
+    display: flex;
+    flex-flow: column-reverse wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "DotGothic16", sans-serif;
+}
+
+#message {
+    position: absolute;
+}
+
+#restart {
+    font-family: "DotGothic16", sans-serif;
+    background-color: rgb(231, 172, 84);
+}
+
+.hidden {
+    visibility: hidden;
+}
+  

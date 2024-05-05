@@ -128,6 +128,8 @@ document.addEventListener('keydown', (event) => {
 // Now the snake goes up again..
 // [3, 8, 7, 6, 5]
 
+// firstTest - going up coming from the right 
+
 // const testArray = [10, 11, 12, 13, 14]
 // desired result: [5, 10, 11, 12, 13]
 
@@ -142,7 +144,7 @@ document.addEventListener('keydown', (event) => {
 
 // console.log(newDirection)
 
-//secondTest - coming from the left
+//secondTest - going up coming from the left
 
 //Snake's head is at 13 and it wants to go up to 8
 
@@ -201,3 +203,42 @@ for (let i = 0; i < testArray.length; i++) {
 //Consider how to do this in a way that is relative to the info you already have
 
 console.log(newDirection)
+
+
+// Wriggle movement:
+// Update 2:
+
+// Using map we can generate a new array with the right values.
+// However, we need to have logic that moves the array values 
+// up or down depending on the direction the snake is coming from.
+
+// i.e. 
+// Snake goes up coming from right
+// Head decreases by 5 (POTENTIAL BUG: would this instruction happen every interval...?)
+// body decreases by 1 each interval
+
+
+// Snake goes up coming from left
+// Head increase by 5
+// body increases by 1 each interval
+
+// Moreover, with conditional logic the last index will always default to the 'else' instruction as it has nothing to compare itself to in the array, so it will act oppositely to how we want.
+
+// There's a need for logic that says if you're the last one AND you're in a decrementing array, you have to minus one OR if you're the last one in an increasing array, you have to add one.
+
+// ON TOP OF THIS
+// We know that the food logic will always need an index to be added to the end of the array, but 
+// whether or not that value will be higher or lower is another question. We know a global scope solution will 
+// be needed then rather than something nested in conditional logic within moveSnake(). (Unless the variable 
+// being updated just sits in global scope). 
+
+// Two thoughts:
+// Using head value for a global scope solution
+// Checking if the grid array has any properties I can use
+
+// To keep it very simple:
+// We know the snake's head needs to jump up a row
+// Is there an iterator method that can push back or forward every value by 1?
+// Or simply take the position of the one that came before it?
+// When it comes to growth, it will also need to .push() the relevant value
+// to the end. 

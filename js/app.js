@@ -5,14 +5,14 @@ const width = 5
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [12, 13, 14]
+const snakePosition = [10, 11, 12]
 let headIndex 
-let tailindex 
+let tailIndex 
 let gameOver
 
 //Sets default movement with interval, which is later altered in the autoMove function
 let timer
-let lastKeyDown = "ArrowRight"
+let lastKeyDown = "ArrowUp"
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -22,7 +22,7 @@ const gameMessageEl = document.querySelector("#message")
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-    gameOver = false
+    gameOver = false;
     playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
@@ -66,13 +66,18 @@ function moveSnake(event) {
         direction = 1
     }
     //Updated to only move the snake's head
-    snakePosition[0] += direction;
-    headIndex = snakePosition.shift()
-    tailIndex = snakePosition.pop()
-    console.log(`this is current position of the head: ${headIndex} and this is the current position of the tail: ${tailIndex}`)
+    snakePosition.forEach((bodyPart, index) => {
+        snakePosition[index] = bodyPart + direction
+        //Get position of head/tail dynamically - doesn't work
+        headIndex = snakePosition[0]
+        tailIndex = snakePosition[snakePosition.length -1]
+    })
     //Render is called immediately following the move conditional logic
     render();
 }
+
+console.log(headIndex)
+console.log(tailIndex)
 
 //Solid wall logic
 //! Top and bottom

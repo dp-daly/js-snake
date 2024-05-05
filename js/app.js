@@ -128,15 +128,76 @@ document.addEventListener('keydown', (event) => {
 // Now the snake goes up again..
 // [3, 8, 7, 6, 5]
 
+// const testArray = [10, 11, 12, 13, 14]
+// desired result: [5, 10, 11, 12, 13]
+
+// const newDirection = testArray.map((num, index) => {
+//     if (index === 0) {
+//         return num - width
+//     }
+//     if (index !== 0) {
+//         return num -1
+//     }
+// })
+
+// console.log(newDirection)
+
+//secondTest - coming from the left
+
+//Snake's head is at 13 and it wants to go up to 8
+
+//! Previous mostly successful test
+// const testArray = [13, 12, 11, 10]
+// //desired result: [8, 13, 12, 11]
+
+// const newDirection = testArray.map((num, index) => {
+//     if (index === 0) {
+//         return num - width;
+//     }
+//     // if (index === testArray.length - 1) {
+//     //     return num + 1
+//     // }
+//     if (index !== 0 && testArray[index +1] < num) {
+//         return num +1;
+//     } else {
+//         return num -1;
+//     }
+// })
+
+//returns: [8, 13, 12, 9]
+//The condition takes 13 and minuses 5 to get 8;
+//It takes 12 and pluses 1 to get 13
+//It takes 11 and pluses 1 to get 12
+//Then it takes 10, it can't check the condition so it minuses 1 (the else statement)
+//Need to add new condition at start to apply to final position in test
+//Added, and now there is the issue of differentiating that part of the rule still for left and right. 
+//We would need to use a forLoop if we wanted to limit the effect on the final number, but we'll still need it to either plus or minus. 
+
+//For loop test:
+// const testArray = [13, 12, 11, 10]
 const testArray = [10, 11, 12, 13, 14]
 
-const newDirection = testArray.map((num, index) => {
-    if (index === 0) {
-        return num - width
+let newDirection = []
+
+for (let i = 0; i < testArray.length; i++) {
+    if (i === 0) {
+        newDirection.push(testArray[0] - width);
+    } else {
+        if (testArray[i] > testArray[i +1]) {
+            newDirection.push(testArray[i] + 1);
+        } else {
+            newDirection.push(testArray[i] - 1);
+        }
     }
-    if (index !== 0) {
-        return num -1
-    }
-})
+}
+
+//Same issue, we need to be able to add in another condition to deal with the last index. 
+//Options: 
+// 1: food logic will also need to know whether or not to add an index of higher or lower than the value of the current final index -- so think of a global scope solution that can be drawn on later.
+//  
+
+
+//You would have to have a way of js knowing that the snake is coming from the right and therefore needs to be +1 instead of -1
+//Consider how to do this in a way that is relative to the info you already have
 
 console.log(newDirection)

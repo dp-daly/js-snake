@@ -5,69 +5,14 @@ const width = 5
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [12, 13, 14, 15]
-//desired: 7, 12, 13
-//actual: 7, 14, undefined
-// with minus 1 after recalling the index, we have the desired output
-// this is not replacing the position in the chain though... 
+const snakePosition = [12, 13, 14]
+let headIndex 
+let tailindex 
 let gameOver
-
-//! Next thing to try is storing the value of the if and using it for the moving of indexes..
-//! which iteration method can do that?
-
-// Next to try is centring on snake's head and storing previous position if possible
-
-let headIndex = snakePosition[0]
-let neckIndex = snakePosition[1]
-
-snakePosition.forEach((num, index, snakePosition) => {
-    if (headIndex) {
-        headIndex = num - width
-    } else if (neckIndex) {
-        neckIndex = headIndex - width
-    } else { 
-        snakePosition[index] = snakePosition[index+1]
-}})
-console.log(snakePosition)
-
-// This doesn't work.
-
-// ! .forEach()
-// snakePosition.forEach((num, index, snakePosition) => {
-//     if (index === 0) {
-//         snakePosition[index] = num - width;
-//     } else {
-//         snakePosition[index] = snakePosition[index] - 1
-//     }
-// })
-//console.log(snakePosition)
-
-
-// ! .map()
-// const newPosition = snakePosition.map((num, index) => {
-//     if (index === 0) {
-//         return num - width;
-//     }  
-//     if (index !== 0) {
-//         return snakePosition[index] - 1
-//     }
-// })
-
-// console.log(newPosition)
-
-// ! Decrementing:
-// for (let i = snakePosition.length - 1; i > 0; i--) {
-//     snakePosition[i] = snakePosition[i-1];
-//         if (i === 0) {
-//             snakePosition[i] = snakePosition[i] - width;
-//         }
-// }
-
-// console.log(snakePosition)
 
 //Sets default movement with interval, which is later altered in the autoMove function
 let timer
-let lastKeyDown = "ArrowLeft"
+let lastKeyDown = "ArrowRight"
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -109,17 +54,6 @@ function render() {
 })
 }
 
-// const testArray = [10, 11, 12, 13, 14]
-// const newDirection = testArray.map((num, index) => {
-//     if (index === 0) {
-//         return num - width
-//     }
-//     if (index !== 0) {
-//         return testArray[index + 1]
-//     }
-// })
-
-
 function moveSnake(event) {
     let direction = 0
     if (event.key === "ArrowUp") {
@@ -131,12 +65,13 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    //To have snake appear in more than one cell, we have to loop through the array length and assign the direction to a variable (as in grid demo)
-    snakePosition.forEach((bodyPart, index) => {
-        snakePosition[index] = bodyPart + direction
-    })
+    //Updated to only move the snake's head
+    snakePosition[0] += direction;
+    headIndex = snakePosition.shift()
+    tailIndex = snakePosition.pop()
+    console.log(`this is current position of the head: ${headIndex} and this is the current position of the tail: ${tailIndex}`)
     //Render is called immediately following the move conditional logic
-    render()
+    render();
 }
 
 //Solid wall logic
@@ -154,5 +89,4 @@ function moveSnake(event) {
 document.addEventListener('keydown', (event) => {
     lastKeyDown = event.key;
 })
-
 

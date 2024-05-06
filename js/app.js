@@ -101,6 +101,8 @@ function solidWalls() {
     }
 }
 //If it hits the left hand side it still pokes through the right wall... 
+//? Temp fix with wall but raises issues with adding images over another class
+//? ID can't be used or it messes with the cells constant
 
 
 //Self-hit logic

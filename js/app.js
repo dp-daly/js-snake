@@ -24,7 +24,7 @@ const gameMessageEl = document.querySelector("#message")
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-    gameOver = true;
+    gameOver = false;
     playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
@@ -103,6 +103,7 @@ function solidWalls() {
 //If it hits the left hand side it still pokes through the right wall... 
 //? Temp fix with wall but raises issues with adding images over another class
 //? ID can't be used or it messes with the cells constant
+//? However, this helps fulfil the criteria of no errors in console as it never breaches edge
 
 
 //Self-hit logic

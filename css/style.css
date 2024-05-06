@@ -64,6 +64,11 @@ h1 {
     background-color: rgb(231, 172, 84);
 }
 
+/*Would like to add a water gif but the class is already assigned the grass png*/ 
+.grass div.wall {
+    background-color: black;
+}
+
 .hidden {
     visibility: hidden;
 }

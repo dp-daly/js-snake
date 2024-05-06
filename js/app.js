@@ -7,9 +7,10 @@ const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [4, 5, 6, 7, 8, 9]
+const snakePosition = [125, 126, 127, 128, 129]
 let headIndex 
 let currentHeadIndex
+let currentBodyIndex
 let gameOver
 
 let timer
@@ -23,7 +24,7 @@ const gameMessageEl = document.querySelector("#message")
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-    gameOver = false;
+    gameOver = true;
     playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
@@ -68,14 +69,14 @@ function moveSnake(event) {
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
+    currentBodyIndex = snakePosition
     console.log("currentHeadIndex: ", currentHeadIndex)
+    console.log("currentBodyIndex: ", currentBodyIndex)
+    selfHit();
     solidWalls();
     render();
 }
 
-
-//! Bug found: at the moment the snake can turn back on itself. May be able to
-//! fix this in logic that ends game when snake runs into itself/walls. 
 
 //Solid wall logic
 
@@ -90,16 +91,30 @@ function moveSnake(event) {
 function solidWalls() {
     const rowPosition = currentHeadIndex % width
     const colPosition = Math.floor(currentHeadIndex / width)
-    if (colPosition < 0 || colPosition === width -1) {
+    if (colPosition <= 0 || colPosition === width -1) {
         console.log("Game should be over!")
         gameOver = true
     }
-    if (rowPosition < 0 || rowPosition === width -1) {
+    if (rowPosition <= 0 || rowPosition === width -1) {
         console.log("Game should be over!")
         gameOver = true
     }
 }
+//If it hits the left hand side it still pokes through the right wall... 
 
+
+//Self-hit logic
+//I can see on console that the currentBodyIndex and currentHeadIndex can both have the same
+//value in the same array and still the below doesn't seem to trigger gameOver true.
+function selfHit() {
+    currentBodyIndex.forEach((bodyPart) => {
+        if (currentHeadIndex === bodyPart) {
+            gameOver === true
+            console.log(bodyPart)
+            //it's never logging bodyPart
+        }
+    })
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 

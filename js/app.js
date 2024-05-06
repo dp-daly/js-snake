@@ -53,6 +53,8 @@ function render() {
 })
 }
 
+
+
 function moveSnake(event) {
     let direction = 0
     if (event.key === "ArrowUp") {
@@ -68,6 +70,8 @@ function moveSnake(event) {
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
+    console.log("currentHeadIndex: ", currentHeadIndex)
+    solidWalls();
     render();
 }
 
@@ -76,6 +80,15 @@ function moveSnake(event) {
 //! fix this in logic that ends game when snake runs into itself/walls. 
 
 //Solid wall logic
+
+//This only works for the top and bottom of the board
+//Will need impenetrable wall logic which must be the solution to ex9 in grid lab
+function solidWalls() {
+    if (currentHeadIndex < 0 || currentHeadIndex > 399) {
+        gameOver = true
+    }
+}
+
 
 
 /*----------------------------- Event Listeners -----------------------------*/

@@ -23,7 +23,7 @@ const gameMessageEl = document.querySelector("#message")
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-    gameOver = true;
+    gameOver = false;
     playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
@@ -53,8 +53,6 @@ function render() {
 })
 }
 
-
-
 function moveSnake(event) {
     let direction = 0
     if (event.key === "ArrowUp") {
@@ -81,14 +79,26 @@ function moveSnake(event) {
 
 //Solid wall logic
 
-//This only works for the top and bottom of the board
-//Will need impenetrable wall logic which must be the solution to ex9 in grid lab
+// This only works for the top and bottom of the board
+// function solidWalls() {
+//     if (currentHeadIndex < 0 || currentHeadIndex > 399) {
+//         gameOver = true
+//     }
+// }
+
+// Adapted from ex9 in grid labs
 function solidWalls() {
-    if (currentHeadIndex < 0 || currentHeadIndex > 399) {
+    const rowPosition = currentHeadIndex % width
+    const colPosition = Math.floor(currentHeadIndex / width)
+    if (colPosition < 0 || colPosition === width -1) {
+        console.log("Game should be over!")
+        gameOver = true
+    }
+    if (rowPosition < 0 || rowPosition === width -1) {
+        console.log("Game should be over!")
         gameOver = true
     }
 }
-
 
 
 /*----------------------------- Event Listeners -----------------------------*/

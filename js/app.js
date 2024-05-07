@@ -130,6 +130,9 @@ function generateRandomNum() {
 //? It would involve having the randomNumber generated but if it is one of the values of the
 //? wall div, it would have to call itself again
 
+//! Might be easier to just attempt this on existing function
+//! Errors might be due to calling things that are already being
+//! acted upon
 // function testRandomNum2() {
 // generate random number and store it in a variable
 // if that number is one of the indexes in the wallsArray

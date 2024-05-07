@@ -133,6 +133,9 @@ function generateRandomNum() {
 //! Might be easier to just attempt this on existing function
 //! Errors might be due to calling things that are already being
 //! acted upon
+
+//! It may also just be better practice to fix the original issue with the solid walls
+//! Than a convoluted workaround... Can add a decorated border in CSS?
 // function testRandomNum2() {
 // generate random number and store it in a variable
 // if that number is one of the indexes in the wallsArray

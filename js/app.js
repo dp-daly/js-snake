@@ -4,7 +4,7 @@ const cells = document.querySelectorAll(".grass div")
 const walls = document.querySelectorAll(".grass div.wall")
 
 //loop through cells
-//save cells that has class of walls
+//save cells that has class of walls and sprites
 //save list of indexes 
 //const cellsIndexArray = Array.from(cells)
 const width = 20
@@ -16,6 +16,7 @@ let headIndex
 let currentHeadIndex
 let currentBodyIndex
 let invalidCellIndexes = []
+let unfilteredMouseIndex
 let mouseIndex
 let gameOver
 
@@ -107,14 +108,6 @@ function solidWalls() {
     }
 }
 
-//If it hits the left hand side it still pokes through the right wall... 
-//? Temp fix with wall but raised issues with adding images over another class
-//? ID can't be used or it messes with the cells constant
-//? However, this helps fulfil the criteria of no errors in console as it never breaches edge
-//? BUG: MOUSE CAN APPEAR IN WALL AREA WHICH IS INACCESSIBLE
-
-//
-
 function selfHit() {
     currentBodyIndex.forEach((bodyPart) => {
         if (currentHeadIndex === bodyPart) {
@@ -131,30 +124,16 @@ function generateRandomNum() {
 
 
 //! Trying to resolve mouse appearing in wall bug
-//? Is it possible to have a rule where the mouse does not appear in wall divs?
-//? It would involve having the randomNumber generated but if it is one of the values of the
-//? wall div, it would have to call itself again
-
-//! Might be easier to just attempt this on existing function
-//! Errors might be due to calling things that are already being
-//! acted upon
-
-//! It may also just be better practice to fix the original issue with the solid walls
-//! Than a convoluted workaround... Can add a decorated border in CSS?
-// function testRandomNum2() {
-// generate random number and store it in a variable
-// if that number is one of the indexes in the wallsArray
-// generate another number and put that in mouseIndex
-// let store = Math.floor(Math.random() * 399)
-// wallsIndexArray.forEach((instance) => (
-//     if (store !== instance) {
-//         store === mouseTestIndex
-//     }
-// ))
-// }
-
+//Having issues with filtering correctly - 
+//Unsure how to say "if it contains a number from this list, go back and generate a new random number"
+//A while loop causes the browser to crash
+// ? Next: create a list of valid cells instead? and use if/else below to assign mouse index
 function mouseAppears() {
-    mouseIndex = generateRandomNum()
+    unfilteredMouseIndex = generateRandomNum()
+    if (invalidCellIndexes.includes(unfilteredMouseIndex)) {
+        unfilteredMouseIndex = generateRandomNum()
+    }
+    mouseIndex = unfilteredMouseIndex;
     cells[mouseIndex].classList.add("mouse")
 }
 
@@ -172,7 +151,10 @@ function getInvalidCellIndexes() {
     if (cell.classList.contains("wall") || cell.classList.contains("sprite")) {
         invalidCellIndexes.push(i)
     }})
+    //console.log(invalidCellIndexes)
+    //Dynamically updated array of numbers can now be compared with random number generated
 }
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 document.addEventListener("keydown", (event) => {

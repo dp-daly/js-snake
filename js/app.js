@@ -1,13 +1,12 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const cells = document.querySelectorAll(".grass div")
-//const iterableCells = Array.from(cells)
+//const cellsIndexArray = Array.from(cells)
 const width = 20
-//cells[56].classList.add("mouse")
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [125, 126, 127, 128, 129, 130, 131]
+const snakePosition = [125, 126, 127, 128, 129, 130]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
@@ -22,6 +21,9 @@ let lastKeyDown = "ArrowDown"
 const playAgainBtnEl = document.querySelector("#restart")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector("#theme")
+const wallElements = document.querySelectorAll(".grass div.wall")
+const wallIndexArray = Array.from(wallElements)
+console.log(wallIndexArray)
 //const sprite = document.querySelector(".grass div.sprite")
 //const mouse = document.querySelector(".grass .div.mouse")
 
@@ -104,7 +106,9 @@ function solidWalls() {
 //? Temp fix with wall but raises issues with adding images over another class
 //? ID can't be used or it messes with the cells constant
 //? However, this helps fulfil the criteria of no errors in console as it never breaches edge
-// ? BUG: MOUSE CAN APPEAR IN WALL AREA WHICH IS INACCESSIBLE
+//? BUG: MOUSE CAN APPEAR IN WALL AREA WHICH IS INACCESSIBLE
+
+//
 
 function selfHit() {
     currentBodyIndex.forEach((bodyPart) => {
@@ -119,6 +123,24 @@ function selfHit() {
 function generateRandomNum() {
     return Math.floor(Math.random() * 399)
 }
+
+
+//! Trying to resolve mouse appearing in wall bug
+//? Is it possible to have a rule where the mouse does not appear in wall divs?
+//? It would involve having the randomNumber generated but if it is one of the values of the
+//? wall div, it would have to call itself again
+
+// function testRandomNum2() {
+// generate random number and store it in a variable
+// if that number is one of the indexes in the wallsArray
+// generate another number and put that in mouseIndex
+// let store = Math.floor(Math.random() * 399)
+// wallsIndexArray.forEach((instance) => (
+//     if (store !== instance) {
+//         store === mouseTestIndex
+//     }
+// ))
+// }
 
 function mouseAppears() {
     mouseIndex = generateRandomNum()

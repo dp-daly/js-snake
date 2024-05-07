@@ -2,11 +2,6 @@
 
 const cells = document.querySelectorAll(".grass div")
 const walls = document.querySelectorAll(".grass div.wall")
-
-//loop through cells
-//save cells that has class of walls and sprites
-//save list of indexes 
-//const cellsIndexArray = Array.from(cells)
 const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
@@ -18,7 +13,6 @@ let currentBodyIndex
 let validCellIndexes = []
 let mouseIndex
 let gameOver
-
 let timer
 let lastKeyDown = "ArrowDown"
 
@@ -27,10 +21,15 @@ let lastKeyDown = "ArrowDown"
 const playAgainBtnEl = document.querySelector("#restart")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector("#theme")
-//const sprite = document.querySelector(".grass div.sprite")
-//const mouse = document.querySelector(".grass .div.mouse")
 
 /*-------------------------------- Functions --------------------------------*/
+
+//validCellsIndex variable is populated statically (non-dynamically and 
+//does not include sprite class).
+cells.forEach((cell, i) => {
+    if (!cell.classList.contains("wall")) {
+        validCellIndexes.push(i)
+    }})
 
 function init() {
     gameOver = false;
@@ -83,7 +82,6 @@ function moveSnake(event) {
     currentBodyIndex = snakePosition.slice(1)
     console.log("currentHeadIndex: ", currentHeadIndex)
     console.log("currentBodyIndex: ", currentBodyIndex)
-    getValidCellIndexes();
     selfHit();
     solidWalls();
     mouseIsEaten();
@@ -117,22 +115,10 @@ function selfHit() {
 
 
 //! Mouse appear/eaten
-//Generate random array from the validCellIndexes array
+//Generate random value from the validCellIndexes array
 function generateRandomNum() {
     return validCellIndexes[(Math.floor(Math.random() * validCellIndexes.length))]
 }
-
-//! Trying to resolve mouse appearing in wall bug
-// I think this logic is right, but we get a type error because the random number isn't generated
-// until the validCellIndexes is dynamically created during gameplay.
-// Three options:
-// 1/ Play with timing of when to call the function - but I know I don't want it in the interval otherwise
-// it will refresh at the wrong pace.
-// 2/ Break up the function and play with timing - unsure if this will work.
-// 3/ Have validCellIndexes generated statically at the start and allow food to appear on snake and consider an 'updatevalidcellindexes' function separately
-// which would remove the sprite from the validCellsIndex array.
-// ? Before doing that, try one more thing with using two functions to create a filtering loop
-// ? for the randomIndex.
 function mouseAppears() {
     mouseIndex = generateRandomNum()
     cells[mouseIndex].classList.add("mouse")
@@ -145,13 +131,6 @@ function mouseIsEaten() {
         //respawn
         mouseAppears()
     }
-}
-
-function getValidCellIndexes() {
-    cells.forEach((cell, i) => {
-    if (!cell.classList.contains("wall") && !cell.classList.contains("sprite")) {
-        validCellIndexes.push(i)
-    }})
 }
 
 /*----------------------------- Event Listeners -----------------------------*/

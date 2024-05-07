@@ -1,6 +1,11 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const cells = document.querySelectorAll(".grass div")
+const walls = document.querySelectorAll(".grass div.wall")
+
+//loop through cells
+//save cells that has class of walls
+//save list of indexes 
 //const cellsIndexArray = Array.from(cells)
 const width = 20
 
@@ -10,6 +15,7 @@ const snakePosition = [125, 126, 127, 128, 129, 130]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
+let invalidCellIndexes = []
 let mouseIndex
 let gameOver
 
@@ -21,9 +27,6 @@ let lastKeyDown = "ArrowDown"
 const playAgainBtnEl = document.querySelector("#restart")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector("#theme")
-const wallElements = document.querySelectorAll(".grass div.wall")
-const wallIndexArray = Array.from(wallElements)
-console.log(wallIndexArray)
 //const sprite = document.querySelector(".grass div.sprite")
 //const mouse = document.querySelector(".grass .div.mouse")
 
@@ -43,7 +46,7 @@ mouseAppears();
 function autoMove() {
     timer = setInterval(() => {
         moveSnake({key: lastKeyDown})
-    }, 350)
+    }, 250)
 }
 
 function render() {
@@ -80,6 +83,7 @@ function moveSnake(event) {
     currentBodyIndex = snakePosition.slice(1)
     console.log("currentHeadIndex: ", currentHeadIndex)
     console.log("currentBodyIndex: ", currentBodyIndex)
+    getInvalidCellIndexes();
     selfHit();
     solidWalls();
     mouseIsEaten();
@@ -102,8 +106,9 @@ function solidWalls() {
         gameOver = true
     }
 }
+
 //If it hits the left hand side it still pokes through the right wall... 
-//? Temp fix with wall but raises issues with adding images over another class
+//? Temp fix with wall but raised issues with adding images over another class
 //? ID can't be used or it messes with the cells constant
 //? However, this helps fulfil the criteria of no errors in console as it never breaches edge
 //? BUG: MOUSE CAN APPEAR IN WALL AREA WHICH IS INACCESSIBLE
@@ -160,6 +165,13 @@ function mouseIsEaten() {
         //respawn
         mouseAppears()
     }
+}
+
+function getInvalidCellIndexes() {
+    cells.forEach((cell, i) => {
+    if (cell.classList.contains("wall") || cell.classList.contains("sprite")) {
+        invalidCellIndexes.push(i)
+    }})
 }
 /*----------------------------- Event Listeners -----------------------------*/
 

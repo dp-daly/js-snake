@@ -7,7 +7,7 @@ const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [125, 126, 127, 128]
+const snakePosition = [125, 126, 127, 128, 129, 130, 131]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
@@ -34,8 +34,8 @@ function init() {
     render()
 }
 
-init()
-
+init();
+//! mouseAppears();
 
 function autoMove() {
     timer = setInterval(() => {
@@ -77,6 +77,7 @@ function moveSnake(event) {
     console.log("currentBodyIndex: ", currentBodyIndex)
     selfHit();
     solidWalls();
+    //! mouseIsEaten();
     render();
 }
 
@@ -109,45 +110,46 @@ function solidWalls() {
 //? However, this helps fulfil the criteria of no errors in console as it never breaches edge
 
 
-//Self-hit logic
-//I can see on console that the currentBodyIndex and currentHeadIndex can both have the same
-//value in the same array and still the below doesn't seem to trigger gameOver true.
-//! Working now - was using wrong "=" 
-//! Now need to add condition so that the first value in the body index is immune
-//! Added slice to currentBodyIndex
 function selfHit() {
     currentBodyIndex.forEach((bodyPart) => {
         if (currentHeadIndex === bodyPart) {
             gameOver = true
             console.log(bodyPart)
-            //it's never logging bodyPart
-            //nb. currentBodyIndex is already a dynamically-created array, updated every
-            //second - could that be why?
         }
     })
 }
 
 
+
+//! Mouse appear/eaten/snakegrow
 //Hint with grow logic - 'stop one thing you're doing' -- so just stop .pop()?
 //Food appears on random cell
 
-
 //There will be an issue with generating numbers that equal the value of the border/river
-//console.log(generateRandomNum())
-//console.log(generateRandomNum())
-// function generateRandomNum() {
-//     return Math.floor(Math.random() * 399)
-// }
+// console.log(generateRandomNum())
+// console.log(generateRandomNum())
+function generateRandomNum() {
+    return Math.floor(Math.random() * 399)
+}
 
 
-// function foodAppears() {
-//     mouseIndex = generateRandomNum()
-//     cells[mouseIndex].ClassList.add("mouse")
-//     if (headIndex === mouseIndex) {
-//         cells[mouseIndex].ClassList.remove("mouse")
-//     }
-// }
+function mouseAppears() {
+    //food appears logic
+    //should not depend on interval but disappear when taken and respawn after that
+    mouseIndex = generateRandomNum()
+    cells[mouseIndex].ClassList.add("mouse")
+}
 
+//splitting into another function to avoid randomNum getting caught in interval
+function mouseIsEaten() {
+    if (headIndex === mouseIndex) {
+        //disappear
+        cells[mouseIndex].ClassList.remove("mouse")
+    }
+}
+
+//Think about where to call functions, mouseAppears() should be able to be used twice for 
+//respawning after it is eaten
 
 /*----------------------------- Event Listeners -----------------------------*/
 

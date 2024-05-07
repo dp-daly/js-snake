@@ -131,6 +131,8 @@ function generateRandomNum() {
 // 2/ Break up the function and play with timing - unsure if this will work.
 // 3/ Have validCellIndexes generated statically at the start and allow food to appear on snake and consider an 'updatevalidcellindexes' function separately
 // which would remove the sprite from the validCellsIndex array.
+// ? Before doing that, try one more thing with using two functions to create a filtering loop
+// ? for the randomIndex.
 function mouseAppears() {
     mouseIndex = generateRandomNum()
     cells[mouseIndex].classList.add("mouse")

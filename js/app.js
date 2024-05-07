@@ -69,6 +69,7 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
+    //Tail not popped if mouseEaten
     if (currentHeadIndex !== mouseIndex) {
         snakePosition.pop();}
     headIndex = snakePosition[0]
@@ -114,7 +115,7 @@ function selfHit() {
 }
 
 
-//! Mouse appear/eaten/snake grow
+//! Mouse appear/eaten
 function generateRandomNum() {
     return Math.floor(Math.random() * 399)
 }

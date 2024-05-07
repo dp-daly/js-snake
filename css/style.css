@@ -9,6 +9,10 @@ body {
     margin: 0;
   }
 
+.darkmode {
+    background-image: url('../assets/darkmodebg.png');
+}
+
 .container {
     height: 80vh;
     display: flex;
@@ -69,6 +73,12 @@ h1 {
     background-color: rgb(231, 172, 84);
 }
 
+#theme {
+    visibility: hidden;
+    font-family: "DotGothic16", sans-serif;
+    background-color: rgb(231, 172, 84);
+}
+
 /*Would like to add a water gif but the class is already assigned the grass png*/ 
 .grass div.wall {
     background-color: black;
@@ -77,4 +87,3 @@ h1 {
 .hidden {
     visibility: hidden;
 }
-  

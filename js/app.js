@@ -21,6 +21,7 @@ let lastKeyDown = "ArrowDown"
 
 const playAgainBtnEl = document.querySelector("#restart")
 const gameMessageEl = document.querySelector("#message")
+const themeButton = document.querySelector("#theme")
 //const sprite = document.querySelector(".grass div.sprite")
 //const mouse = document.querySelector(".grass .div.mouse")
 
@@ -35,7 +36,7 @@ function init() {
 }
 
 init();
-//! mouseAppears();
+mouseAppears();
 
 function autoMove() {
     timer = setInterval(() => {
@@ -68,7 +69,8 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    snakePosition.pop();
+    if (currentHeadIndex !== mouseIndex) {
+        snakePosition.pop();}
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
@@ -77,19 +79,12 @@ function moveSnake(event) {
     console.log("currentBodyIndex: ", currentBodyIndex)
     selfHit();
     solidWalls();
-    //! mouseIsEaten();
+    mouseIsEaten();
     render();
 }
 
 
 //Solid wall logic
-
-// This only works for the top and bottom of the board
-// function solidWalls() {
-//     if (currentHeadIndex < 0 || currentHeadIndex > 399) {
-//         gameOver = true
-//     }
-// }
 
 // Adapted from ex9 in grid labs
 function solidWalls() {
@@ -108,52 +103,37 @@ function solidWalls() {
 //? Temp fix with wall but raises issues with adding images over another class
 //? ID can't be used or it messes with the cells constant
 //? However, this helps fulfil the criteria of no errors in console as it never breaches edge
-
+// ? BUG: MOUSE CAN APPEAR IN WALL AREA WHICH IS INACCESSIBLE
 
 function selfHit() {
     currentBodyIndex.forEach((bodyPart) => {
         if (currentHeadIndex === bodyPart) {
             gameOver = true
-            console.log(bodyPart)
         }
     })
 }
 
 
-
-//! Mouse appear/eaten/snakegrow
-//Hint with grow logic - 'stop one thing you're doing' -- so just stop .pop()?
-//Food appears on random cell
-
-//There will be an issue with generating numbers that equal the value of the border/river
-// console.log(generateRandomNum())
-// console.log(generateRandomNum())
+//! Mouse appear/eaten/snake grow
 function generateRandomNum() {
     return Math.floor(Math.random() * 399)
 }
 
-
 function mouseAppears() {
-    //food appears logic
-    //should not depend on interval but disappear when taken and respawn after that
     mouseIndex = generateRandomNum()
-    cells[mouseIndex].ClassList.add("mouse")
+    cells[mouseIndex].classList.add("mouse")
 }
 
-//splitting into another function to avoid randomNum getting caught in interval
 function mouseIsEaten() {
     if (headIndex === mouseIndex) {
         //disappear
-        cells[mouseIndex].ClassList.remove("mouse")
+        cells[mouseIndex].classList.remove("mouse")
+        //respawn
+        mouseAppears()
     }
 }
-
-//Think about where to call functions, mouseAppears() should be able to be used twice for 
-//respawning after it is eaten
-
 /*----------------------------- Event Listeners -----------------------------*/
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener("keydown", (event) => {
     lastKeyDown = event.key;
 })
-

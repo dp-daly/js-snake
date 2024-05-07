@@ -82,6 +82,7 @@ function moveSnake(event) {
     currentBodyIndex = snakePosition.slice(1)
     console.log("currentHeadIndex: ", currentHeadIndex)
     console.log("currentBodyIndex: ", currentBodyIndex)
+    //Can we dynamically remove sprite class instances from the static validCellIndexes array? 
     selfHit();
     solidWalls();
     mouseIsEaten();

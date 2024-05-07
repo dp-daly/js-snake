@@ -1,16 +1,17 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const cells = document.querySelectorAll(".grass div")
-const iterableCells = Array.from(cells)
-const sprite = document.querySelector(".grass div.sprite")
+//const iterableCells = Array.from(cells)
 const width = 20
+//cells[56].classList.add("mouse")
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [125, 126, 127, 128, 129]
+const snakePosition = [125, 126, 127, 128]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
+let mouseIndex
 let gameOver
 
 let timer
@@ -20,6 +21,8 @@ let lastKeyDown = "ArrowDown"
 
 const playAgainBtnEl = document.querySelector("#restart")
 const gameMessageEl = document.querySelector("#message")
+//const sprite = document.querySelector(".grass div.sprite")
+//const mouse = document.querySelector(".grass .div.mouse")
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -69,7 +72,7 @@ function moveSnake(event) {
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
-    currentBodyIndex = snakePosition
+    currentBodyIndex = snakePosition.slice(1)
     console.log("currentHeadIndex: ", currentHeadIndex)
     console.log("currentBodyIndex: ", currentBodyIndex)
     selfHit();
@@ -109,15 +112,42 @@ function solidWalls() {
 //Self-hit logic
 //I can see on console that the currentBodyIndex and currentHeadIndex can both have the same
 //value in the same array and still the below doesn't seem to trigger gameOver true.
+//! Working now - was using wrong "=" 
+//! Now need to add condition so that the first value in the body index is immune
+//! Added slice to currentBodyIndex
 function selfHit() {
     currentBodyIndex.forEach((bodyPart) => {
         if (currentHeadIndex === bodyPart) {
-            gameOver === true
+            gameOver = true
             console.log(bodyPart)
             //it's never logging bodyPart
+            //nb. currentBodyIndex is already a dynamically-created array, updated every
+            //second - could that be why?
         }
     })
 }
+
+
+//Hint with grow logic - 'stop one thing you're doing' -- so just stop .pop()?
+//Food appears on random cell
+
+
+//There will be an issue with generating numbers that equal the value of the border/river
+//console.log(generateRandomNum())
+//console.log(generateRandomNum())
+// function generateRandomNum() {
+//     return Math.floor(Math.random() * 399)
+// }
+
+
+// function foodAppears() {
+//     mouseIndex = generateRandomNum()
+//     cells[mouseIndex].ClassList.add("mouse")
+//     if (headIndex === mouseIndex) {
+//         cells[mouseIndex].ClassList.remove("mouse")
+//     }
+// }
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 

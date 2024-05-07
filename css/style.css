@@ -47,6 +47,11 @@ h1 {
     background-size: contain;
 } 
 
+/* Appears tiny, doesn't allow 'contain' or 'fill' and .gif not moving*/
+.mouse {
+    background-image: url('../assets/MouseRun.gif')
+}
+
 .game-over {
     display: flex;
     flex-flow: column-reverse wrap;

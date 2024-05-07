@@ -15,8 +15,7 @@ const snakePosition = [125, 126, 127, 128, 129, 130]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
-let invalidCellIndexes = []
-let unfilteredMouseIndex
+let validCellIndexes = []
 let mouseIndex
 let gameOver
 
@@ -84,7 +83,7 @@ function moveSnake(event) {
     currentBodyIndex = snakePosition.slice(1)
     console.log("currentHeadIndex: ", currentHeadIndex)
     console.log("currentBodyIndex: ", currentBodyIndex)
-    getInvalidCellIndexes();
+    getValidCellIndexes();
     selfHit();
     solidWalls();
     mouseIsEaten();
@@ -118,22 +117,22 @@ function selfHit() {
 
 
 //! Mouse appear/eaten
+//Generate random array from the validCellIndexes array
 function generateRandomNum() {
-    return Math.floor(Math.random() * 399)
+    return validCellIndexes[(Math.floor(Math.random() * validCellIndexes.length))]
 }
 
-
 //! Trying to resolve mouse appearing in wall bug
-//Having issues with filtering correctly - 
-//Unsure how to say "if it contains a number from this list, go back and generate a new random number"
-//A while loop causes the browser to crash
-// ? Next: create a list of valid cells instead? and use if/else below to assign mouse index
+// I think this logic is right, but we get a type error because the random number isn't generated
+// until the validCellIndexes is dynamically created during gameplay.
+// Three options:
+// 1/ Play with timing of when to call the function - but I know I don't want it in the interval otherwise
+// it will refresh at the wrong pace.
+// 2/ Break up the function and play with timing - unsure if this will work.
+// 3/ Have validCellIndexes generated statically at the start and allow food to appear on snake and consider an 'updatevalidcellindexes' function separately
+// which would remove the sprite from the validCellsIndex array.
 function mouseAppears() {
-    unfilteredMouseIndex = generateRandomNum()
-    if (invalidCellIndexes.includes(unfilteredMouseIndex)) {
-        unfilteredMouseIndex = generateRandomNum()
-    }
-    mouseIndex = unfilteredMouseIndex;
+    mouseIndex = generateRandomNum()
     cells[mouseIndex].classList.add("mouse")
 }
 
@@ -146,13 +145,11 @@ function mouseIsEaten() {
     }
 }
 
-function getInvalidCellIndexes() {
+function getValidCellIndexes() {
     cells.forEach((cell, i) => {
-    if (cell.classList.contains("wall") || cell.classList.contains("sprite")) {
-        invalidCellIndexes.push(i)
+    if (!cell.classList.contains("wall") && !cell.classList.contains("sprite")) {
+        validCellIndexes.push(i)
     }})
-    //console.log(invalidCellIndexes)
-    //Dynamically updated array of numbers can now be compared with random number generated
 }
 
 /*----------------------------- Event Listeners -----------------------------*/

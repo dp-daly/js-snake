@@ -32,7 +32,7 @@ cells.forEach((cell, i) => {
     }})
 
 function init() {
-    gameOver = true;
+    gameOver = false;
     playAgainBtnEl.classList.add("hidden")
     autoMove()
     render()

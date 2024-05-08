@@ -38,7 +38,7 @@ function init() {
 
 init();
 croissantAppears();
-setTimeout(speedUpSnake, 20000)
+setTimeout(speedUpSnake, 20000);
 
 function autoMove() {
     timer = setInterval(() => {
@@ -54,7 +54,7 @@ function render() {
         cells.forEach((cell, index) => {
             cells[index].classList.remove("sprite")
         })
-    }
+    } 
     cells.forEach((cell, index) => {
         cells[index].classList.remove("sprite")
     })
@@ -131,7 +131,8 @@ function speedUpSnake() {
         }, 50)
     }, 200000)
 }
-
+//Decrease global variable based on interval ticks
+//Or use current time and comparison every interval, clear interval, set new one
 
 function solidWalls() {
     const rowPosition = currentHeadIndex % width
@@ -170,15 +171,23 @@ function croissantIsEaten() {
     }
 }
 
+
+
 function restart() {
-    gameOver = false;
-    snakePosition = [125, 126, 127]
-    playAgainBtnEl.classList.add("hidden")
-    autoMove()
-    render()
+    // gameOver = false;
+    // snakePosition = [125, 126, 127]
+    // playAgainBtnEl.classList.add("hidden")
+    // autoMove()
+    // render()
+    location.reload()
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
+
+window.addEventListener("keydown", function(e) { 
+    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) 
+        {e.preventDefault();}
+}, false);
 
 document.addEventListener("keydown", (event) => {
     lastKeyDown = event.key;

@@ -51,7 +51,7 @@ header {
 .status-wrap {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     height: 300px;
     width: 200px;
 }

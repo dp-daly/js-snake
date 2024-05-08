@@ -30,9 +30,8 @@ cells.forEach((cell, i) => {
     }})
 
 function init() {
-    gameOver = true;
+    gameOver = false;
     playAgainBtnEl.classList.add("hidden")
-    //gameMessageEl.classList.add("hidden")
     autoMove()
     render()
 }
@@ -166,16 +165,23 @@ function croissantAppears() {
 
 function croissantIsEaten() {
     if (headIndex === croissantIndex) {
-        //disappear
         cells[croissantIndex].classList.remove("croissant")
-        //respawn
         croissantAppears()
     }
 }
 
+function restart() {
+    gameOver = false;
+    snakePosition = [125, 126, 127]
+    playAgainBtnEl.classList.add("hidden")
+    autoMove()
+    render()
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 document.addEventListener("keydown", (event) => {
     lastKeyDown = event.key;
 })
+
+playAgainBtnEl.addEventListener("click", restart)

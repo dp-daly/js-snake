@@ -30,7 +30,7 @@ cells.forEach((cell, i) => {
     }})
 
 function init() {
-    gameOver = false;
+    gameOver = true;
     playAgainBtnEl.classList.add("hidden")
     autoMove()
     render()
@@ -154,6 +154,7 @@ function selfHit() {
         }
     })
 }
+
 
 
 function generateRandomNum() {

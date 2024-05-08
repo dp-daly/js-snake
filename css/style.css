@@ -39,7 +39,7 @@ header {
 
 .title {
     display: flex;
-    background-image: url('../assets/serpens.js\ \(2\).png');
+    background-image: url('../assets/serpens.js.gif');
     background-size: contain;
     background-repeat: no-repeat;
     justify-content: center;

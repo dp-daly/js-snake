@@ -115,7 +115,7 @@ function checkHowManyCroissants() {
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 200)
-        gameMessageEl.innerText = "15, hm. Save some for the hedgehogs." 
+        gameMessageEl.innerText = "15, hm. Save some for the rest of us." 
     }
     if (croissantsEaten > 19) {
         clearInterval(timer)

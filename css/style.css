@@ -129,6 +129,7 @@ header {
 
 .darkmode .grass {
     background-image: url('../assets/js-snake\ walled\ garden\ darkmode.png');
+    box-shadow: 0 20px 50px 0px rgba(11, 115, 234, 0.5);
 }
 
 .grass div {

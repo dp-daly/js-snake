@@ -12,6 +12,7 @@ let currentHeadIndex
 let currentBodyIndex
 let validCellIndexes = []
 let croissantIndex
+let croissantsEaten = 0
 let gameOver
 let timer
 let lastKeyDown = "ArrowDown"
@@ -38,7 +39,6 @@ function init() {
 
 init();
 croissantAppears();
-setTimeout(speedUpSnake, 20000);
 
 function autoMove() {
     timer = setInterval(() => {
@@ -75,74 +75,69 @@ function moveSnake(event) {
         direction = 1
     }
     if (currentHeadIndex !== croissantIndex) {
-        snakePosition.pop();}
+        snakePosition.pop();
+    }
+    if (currentHeadIndex === croissantIndex) {
+        croissantsEaten += 1
+    }
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
     currentBodyIndex = snakePosition.slice(1)
-    console.log("currentHeadIndex: ", currentHeadIndex)
-    console.log("currentBodyIndex: ", currentBodyIndex)
     //Can we dynamically remove sprite class instances from the static validCellIndexes array? 
     selfHit();
     solidWalls();
     croissantIsEaten();
+    checkHowManyCroissants();
     render();
 }
 
-//Minor glitch: the new intervals are forcing the snake to move after gameOver
-function speedUpSnake() {
-    clearInterval(timer)
-    timer = setInterval(() => {
-        moveSnake({key: lastKeyDown})
+function checkHowManyCroissants() {
+    if (croissantsEaten > 5) {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
     }, 300)
-
-    setTimeout(() => {
+    }
+    if (croissantsEaten > 10) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 250)
-    }, 10000)
-
-    setTimeout(() => {
+    }
+    if (croissantsEaten > 15) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 200)
-    }, 30000)
-
-    setTimeout(() => {
+    }
+    if (croissantsEaten > 20) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 150)
-    }, 60000)
-
-    setTimeout(() => {
+    }
+    if (croissantsEaten > 30) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 100)
-    }, 90000)
-
-    setTimeout(() => {
+    }
+    if (croissantsEaten > 40) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 50)
-    }, 200000)
 }
-//Decrease global variable based on interval ticks
-//Or use current time and comparison every interval, clear interval, set new one
+}
 
 function solidWalls() {
     const rowPosition = currentHeadIndex % width
     const colPosition = Math.floor(currentHeadIndex / width)
     if (colPosition <= 0 || colPosition === width -1) {
-        console.log("Game should be over!")
         gameOver = true
     }
     if (rowPosition <= 0 || rowPosition === width -1) {
-        console.log("Game should be over!")
         gameOver = true
     }
 }
@@ -175,11 +170,6 @@ function croissantIsEaten() {
 
 
 function restart() {
-    // gameOver = false;
-    // snakePosition = [125, 126, 127]
-    // playAgainBtnEl.classList.add("hidden")
-    // autoMove()
-    // render()
     location.reload()
 }
 

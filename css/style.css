@@ -14,6 +14,8 @@ body {
 
 body.darkmode {
     background-image: url('../assets/darkmodebg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .status-column {
@@ -26,6 +28,10 @@ body.darkmode {
     background-size: contain;
     font-family: "DotGothic16", sans-serif;
     gap: 200px;
+}
+
+.darkmode .status-column {
+    background-image: url('../assets/js-snake\ menu\ side\ bar\ darkmode.png');
 }
 
 header {
@@ -48,6 +54,10 @@ header {
     width: 200px;
     }
 
+.darkmode .title {
+    background-image: url('../assets/serpens.js\ darkmode.gif')
+}
+
 .status-wrap {
     display: flex;
     flex-direction: column;
@@ -69,6 +79,10 @@ header {
     padding: 15px;
 }
 
+.darkmode .status-message {
+    background-image: url('../assets/messagedarkmode.gif')
+}
+
 .restart-button {
     background-image: url('../assets/Restart.gif');
     background-repeat: no-repeat;
@@ -83,6 +97,15 @@ header {
     flex: 2;
     align-items: center;
     justify-content: center;
+}
+
+.theme-button {
+    background-image: url('../assets/theme-button.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 120px;
+    cursor: pointer;
 }
 
 .container {
@@ -104,6 +127,10 @@ header {
     width: 700px;
 }
 
+.darkmode .grass {
+    background-image: url('../assets/js-snake\ walled\ garden\ darkmode.png');
+}
+
 .grass div {
     height: 5%;
     width: 5%;
@@ -114,6 +141,10 @@ header {
     background-repeat: no-repeat;
     background-size: contain;
 } 
+
+.darkmode .grass div.sprite {
+   background-image: url('../assets/space-sprite.gif');
+}
 
 .croissant {
     background-image: url('../assets/croissant.gif');

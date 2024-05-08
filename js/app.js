@@ -22,7 +22,7 @@ let lastKeyDown = "ArrowDown"
 
 const playAgainBtnEl = document.querySelector(".restart-button")
 const gameMessageEl = document.querySelector("#message")
-const themeButton = document.querySelector("#theme")
+const themeButton = document.querySelector(".theme-button")
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -192,3 +192,7 @@ document.addEventListener("keydown", (event) => {
 })
 
 playAgainBtnEl.addEventListener("click", restart)
+
+themeButton.addEventListener("click", () => {
+    document.body.classList.toggle("darkmode")
+})

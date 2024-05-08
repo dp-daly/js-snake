@@ -10,6 +10,7 @@ const snakePosition = [125, 126, 127]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
+let currentSnakeIndex
 let validCellIndexes = []
 let croissantIndex
 let croissantsEaten = 0
@@ -54,7 +55,7 @@ function render() {
         cells.forEach((cell, index) => {
             cells[index].classList.remove("sprite")
         })
-    } 
+    }
     cells.forEach((cell, index) => {
         cells[index].classList.remove("sprite")
     })
@@ -84,13 +85,21 @@ function moveSnake(event) {
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
     currentBodyIndex = snakePosition.slice(1)
-    //Can we dynamically remove sprite class instances from the static validCellIndexes array? 
+    currentSnakeIndex = snakePosition
     selfHit();
     solidWalls();
-    croissantIsEaten();
+    isCroissantEaten();
     checkHowManyCroissants();
+    // filterSnakePosition();
+    // getValidCells();
     render();
 }
+
+// function filterSnakePosition() {
+//     currentSnakeIndex.forEach((i) => {
+//         validCellIndexes.splice(i)
+//     })
+// }
 
 function checkHowManyCroissants() {
     if (croissantsEaten > 5) {
@@ -160,14 +169,12 @@ function croissantAppears() {
     cells[croissantIndex].classList.add("croissant")
 }
 
-function croissantIsEaten() {
+function isCroissantEaten() {
     if (headIndex === croissantIndex) {
         cells[croissantIndex].classList.remove("croissant")
         croissantAppears()
     }
 }
-
-
 
 function restart() {
     location.reload()

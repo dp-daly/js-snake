@@ -51,9 +51,9 @@ h1 {
     background-size: contain;
 } 
 
-/* Appears tiny, doesn't allow 'contain' or 'fill' and .gif not moving*/
 .mouse {
-    background-image: url('../assets/MouseRun.gif')
+    background-image: url('../assets/croissant.png');
+    background-size: cover;
 }
 
 .game-over {
@@ -79,9 +79,8 @@ h1 {
     background-color: rgb(231, 172, 84);
 }
 
-/*Would like to add a water gif but the class is already assigned the grass png*/ 
 .grass div.wall {
-    background-color: black;
+    background-color: black
 }
 
 .hidden {

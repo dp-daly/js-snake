@@ -41,11 +41,12 @@ function init() {
 
 init();
 mouseAppears();
+setTimeout(speedUpSnake, 20000)
 
 function autoMove() {
     timer = setInterval(() => {
         moveSnake({key: lastKeyDown})
-    }, 250)
+    }, 350)
 }
 
 function render() {
@@ -89,10 +90,49 @@ function moveSnake(event) {
     render();
 }
 
+function speedUpSnake() {
+    clearInterval(timer)
+    timer = setInterval(() => {
+        moveSnake({key: lastKeyDown})
+    }, 300)
 
-//Solid wall logic
+    setTimeout(() => {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
+        }, 250)
+    }, 10000)
 
-// Adapted from ex9 in grid labs
+    setTimeout(() => {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
+        }, 200)
+    }, 30000)
+
+    setTimeout(() => {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
+        }, 150)
+    }, 60000)
+
+    setTimeout(() => {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
+        }, 100)
+    }, 90000)
+
+    setTimeout(() => {
+        clearInterval(timer)
+        timer = setInterval(() => {
+            moveSnake({key: lastKeyDown})
+        }, 50)
+    }, 200000)
+}
+
+
 function solidWalls() {
     const rowPosition = currentHeadIndex % width
     const colPosition = Math.floor(currentHeadIndex / width)
@@ -115,8 +155,6 @@ function selfHit() {
 }
 
 
-//! Mouse appear/eaten
-//Generate random value from the validCellIndexes array
 function generateRandomNum() {
     return validCellIndexes[(Math.floor(Math.random() * validCellIndexes.length))]
 }
@@ -133,6 +171,7 @@ function mouseIsEaten() {
         mouseAppears()
     }
 }
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 

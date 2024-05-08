@@ -33,7 +33,7 @@ cells.forEach((cell, i) => {
 
 function init() {
     gameOver = false;
-    playAgainBtnEl.classList.add("hidden")
+    //playAgainBtnEl.classList.add("hidden")
     gameMessageEl.classList.add("hidden")
     autoMove()
     render()
@@ -54,6 +54,9 @@ function render() {
         clearInterval(timer)
         playAgainBtnEl.classList.remove("hidden")
         gameMessageEl.classList.remove("hidden")
+        cells.forEach((cell, index) => {
+            cells[index].classList.remove("sprite")
+        })
     }
     cells.forEach((cell, index) => {
         cells[index].classList.remove("sprite")
@@ -90,6 +93,7 @@ function moveSnake(event) {
     render();
 }
 
+//Minor glitch: the new intervals are forcing the snake to move after gameOver
 function speedUpSnake() {
     clearInterval(timer)
     timer = setInterval(() => {

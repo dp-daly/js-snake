@@ -4,32 +4,77 @@
 
 body {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: space-evenly;
-    flex-direction: column;
     background-image: url('../assets/origbig.png');
+    background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     margin: 0;
   }
 
+body.darkmode {
+    background-image: url('../assets/darkmodebg.png');
+}
+
+.status-column {
+    display: flex;
+    flex: 0.5;
+    flex-direction: column;
+    align-items: space-evenly;
+    background-image: url('../assets/sidebar.png');
+    background-size: contain;
+    font-family: "DotGothic16", sans-serif;
+    gap: 200px;
+}
+
 header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
+    align-content: center;
+    height: 150px;
 }
 
 .title {
+    display: flex;
     background-image: url('../assets/serpens.js\ \(2\).png');
     background-size: contain;
     background-repeat: no-repeat;
-    height: 150px;
-    width: 250px;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 200px;
+    }
+
+.status-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+    height: 300px;
+    width: 200px;
 }
 
-.darkmode {
-    background-image: url('../assets/darkmodebg.png');
+.status-message {
+    background-image: url('../assets/message.gif');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+}
+
+.restart-button {
+    background-image: url('../assets/Restart.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 120px;
+}
+
+.main {
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
@@ -56,14 +101,6 @@ header {
     width: 5%;
 }
 
-h1 {
-    display: flex;
-    justify-content: center;
-    font-family: "DotGothic16", sans-serif;
-    font-size: 2.5em;
-    color: rgb(231, 172, 84);
-}
-
 .grass div.sprite {
     background-image: url('../assets/snake-sprite.png');
     background-repeat: no-repeat;
@@ -74,31 +111,6 @@ h1 {
     background-image: url('../assets/croissant.gif');
     background-size: contain;
     background-repeat: no-repeat;
-}
-
-.game-over {
-    display: flex;
-    flex-flow: column-reverse wrap;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "DotGothic16", sans-serif;
-}
-
-#message {
-}
-
-#restart {
-    font-family: "DotGothic16", sans-serif;
-    background-color: rgb(231, 172, 84);
-}
-
-#theme {
-    visibility: hidden;
-    font-family: "DotGothic16", sans-serif;
-    background-color: rgb(231, 172, 84);
-}
-
-.grass div.wall {
 }
 
 .hidden {

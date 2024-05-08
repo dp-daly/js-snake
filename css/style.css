@@ -66,6 +66,7 @@ header {
     color: black;
     height: 220px;
     width: 200px;
+    padding: 15px;
 }
 
 .restart-button {

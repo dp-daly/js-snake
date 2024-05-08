@@ -52,6 +52,8 @@ function render() {
         clearInterval(timer)
         playAgainBtnEl.classList.remove("hidden")
         gameMessageEl.classList.remove("hidden")
+        gameMessageEl.innerText = "That stings.. GAME OVER"
+        croissantsEaten = 0
         cells.forEach((cell, index) => {
             cells[index].classList.remove("sprite")
         })
@@ -90,53 +92,51 @@ function moveSnake(event) {
     solidWalls();
     isCroissantEaten();
     checkHowManyCroissants();
-    // filterSnakePosition();
-    // getValidCells();
     render();
 }
 
-// function filterSnakePosition() {
-//     currentSnakeIndex.forEach((i) => {
-//         validCellIndexes.splice(i)
-//     })
-// }
-
 function checkHowManyCroissants() {
-    if (croissantsEaten > 5) {
+    if (croissantsEaten > 4) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
     }, 300)
+        gameMessageEl.innerText = "You've had 5 croissants. Fancy some more?"
     }
-    if (croissantsEaten > 10) {
+    if (croissantsEaten > 9) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 250)
+        gameMessageEl.innerText = "That's 10 and counting!"
     }
-    if (croissantsEaten > 15) {
+    if (croissantsEaten > 14) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 200)
+        gameMessageEl.innerText = "15, hm. Save some for the hedgehogs." 
     }
-    if (croissantsEaten > 20) {
+    if (croissantsEaten > 19) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 150)
+        gameMessageEl.innerText = "20! You're gaining speed."
     }
-    if (croissantsEaten > 30) {
+    if (croissantsEaten > 29) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 100)
+        gameMessageEl.innerText = "I'm dizzy. I think we've passed 30.."
     }
-    if (croissantsEaten > 40) {
+    if (croissantsEaten > 39) {
         clearInterval(timer)
         timer = setInterval(() => {
             moveSnake({key: lastKeyDown})
         }, 50)
+        gameMessageEl.innerText = "Over 40! I can't keep count any longer."
 }
 }
 

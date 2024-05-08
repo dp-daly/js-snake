@@ -3,11 +3,30 @@
 }
 
 body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: space-evenly;
+    flex-direction: column;
     background-image: url('../assets/origbig.png');
     background-size: cover;
     height: 100vh;
     margin: 0;
   }
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.title {
+    background-image: url('../assets/serpens.js\ \(2\).png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 250px;
+}
 
 .darkmode {
     background-image: url('../assets/darkmodebg.png');
@@ -21,9 +40,10 @@ body {
   }
 
 .grass {
-    background-image: url('../assets/grass.jpg');
+    background-image: url('../assets/grassbg.png');
     background-size: contain;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    box-shadow: 0 20px 50px 0px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -32,7 +52,6 @@ body {
 }
 
 .grass div {
-    border: 1px solid 
     height: 5%;
     width: 5%;
 }
@@ -52,8 +71,9 @@ h1 {
 } 
 
 .croissant {
-    background-image: url('../assets/croissant.png');
-    background-size: cover;
+    background-image: url('../assets/croissant.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .game-over {
@@ -65,7 +85,6 @@ h1 {
 }
 
 #message {
-    position: absolute;
 }
 
 #restart {
@@ -80,7 +99,6 @@ h1 {
 }
 
 .grass div.wall {
-    background-color: black
 }
 
 .hidden {

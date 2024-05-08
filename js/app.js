@@ -6,7 +6,7 @@ const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [125, 126, 127, 128, 129, 130]
+const snakePosition = [125, 126, 127]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex

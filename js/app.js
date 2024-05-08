@@ -11,7 +11,7 @@ let headIndex
 let currentHeadIndex
 let currentBodyIndex
 let validCellIndexes = []
-let mouseIndex
+let croissantIndex
 let gameOver
 let timer
 let lastKeyDown = "ArrowDown"
@@ -40,7 +40,7 @@ function init() {
 }
 
 init();
-mouseAppears();
+croissantAppears();
 setTimeout(speedUpSnake, 20000)
 
 function autoMove() {
@@ -74,8 +74,8 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    //Tail not popped if mouseEaten
-    if (currentHeadIndex !== mouseIndex) {
+    //Tail not popped if croissantEaten
+    if (currentHeadIndex !== croissantIndex) {
         snakePosition.pop();}
     headIndex = snakePosition[0]
     snakePosition.unshift(headIndex + direction)
@@ -86,7 +86,7 @@ function moveSnake(event) {
     //Can we dynamically remove sprite class instances from the static validCellIndexes array? 
     selfHit();
     solidWalls();
-    mouseIsEaten();
+    croissantIsEaten();
     render();
 }
 
@@ -158,17 +158,17 @@ function selfHit() {
 function generateRandomNum() {
     return validCellIndexes[(Math.floor(Math.random() * validCellIndexes.length))]
 }
-function mouseAppears() {
-    mouseIndex = generateRandomNum()
-    cells[mouseIndex].classList.add("mouse")
+function croissantAppears() {
+    croissantIndex = generateRandomNum()
+    cells[croissantIndex].classList.add("croissant")
 }
 
-function mouseIsEaten() {
-    if (headIndex === mouseIndex) {
+function croissantIsEaten() {
+    if (headIndex === croissantIndex) {
         //disappear
-        cells[mouseIndex].classList.remove("mouse")
+        cells[croissantIndex].classList.remove("croissant")
         //respawn
-        mouseAppears()
+        croissantAppears()
     }
 }
 

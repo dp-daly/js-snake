@@ -18,23 +18,21 @@ let lastKeyDown = "ArrowDown"
 
 /*------------------------ Cached Element References ------------------------*/
 
-const playAgainBtnEl = document.querySelector("#restart")
+const playAgainBtnEl = document.querySelector(".restart-button")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector("#theme")
 
 /*-------------------------------- Functions --------------------------------*/
 
-//validCellsIndex variable is populated statically (non-dynamically and 
-//does not include sprite class).
 cells.forEach((cell, i) => {
     if (!cell.classList.contains("wall")) {
         validCellIndexes.push(i)
     }})
 
 function init() {
-    gameOver = false;
-    //playAgainBtnEl.classList.add("hidden")
-    gameMessageEl.classList.add("hidden")
+    gameOver = true;
+    playAgainBtnEl.classList.add("hidden")
+    //gameMessageEl.classList.add("hidden")
     autoMove()
     render()
 }
@@ -77,7 +75,6 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         direction = 1
     }
-    //Tail not popped if croissantEaten
     if (currentHeadIndex !== croissantIndex) {
         snakePosition.pop();}
     headIndex = snakePosition[0]

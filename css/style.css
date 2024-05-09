@@ -3,11 +3,13 @@
 }
 
 .landingpage {
-    z-index: 2
 }
 
-.gameplay {
-    z-index: 1
+#gameplay {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    gap: 60px;
 }
 
 body {

@@ -10,7 +10,6 @@ const snakePosition = [168, 169, 170]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
-let currentSnakeIndex
 let validCellIndexes = []
 let croissantIndex
 let croissantsEaten = 0
@@ -49,7 +48,6 @@ function init() {
     playButtonEl.classList.add("hidden")
     grassEl.classList.add("hidden")
     statusColumnEl.classList.add('hidden')
-    //Create a button that when pressed runs init
 }
 
 init();
@@ -68,7 +66,7 @@ function play() {
     render()
 }
 
-croissantAppears();
+makeCroissantAppear();
 
 function autoMove() {
     timer = setInterval(() => {
@@ -117,10 +115,9 @@ function moveSnake(event) {
     snakePosition.unshift(headIndex + direction)
     currentHeadIndex = snakePosition[0]
     currentBodyIndex = snakePosition.slice(1)
-    currentSnakeIndex = snakePosition
-    selfHit();
-    solidWalls();
-    isCroissantEaten();
+    checkForSelfHit();
+    makeWallsSolid();
+    checkIfCroissantEaten();
     checkHowManyCroissants();
     render();
 }
@@ -170,7 +167,7 @@ function checkHowManyCroissants() {
 }
 }
 
-function solidWalls() {
+function makeWallsSolid() {
     const rowPosition = currentHeadIndex % width
     const colPosition = Math.floor(currentHeadIndex / width)
     if (colPosition <= 0 || colPosition === width -1) {
@@ -181,7 +178,7 @@ function solidWalls() {
     }
 }
 
-function selfHit() {
+function checkForSelfHit() {
     currentBodyIndex.forEach((bodyPart) => {
         if (currentHeadIndex === bodyPart) {
             gameOver = true
@@ -190,19 +187,18 @@ function selfHit() {
 }
 
 
-
 function generateRandomNum() {
     return validCellIndexes[(Math.floor(Math.random() * validCellIndexes.length))]
 }
-function croissantAppears() {
+function makeCroissantAppear() {
     croissantIndex = generateRandomNum()
     cells[croissantIndex].classList.add("croissant")
 }
 
-function isCroissantEaten() {
+function checkIfCroissantEaten() {
     if (headIndex === croissantIndex) {
         cells[croissantIndex].classList.remove("croissant")
-        croissantAppears();
+        makeCroissantAppear();
         munchEl.play();
     }
 }

@@ -30,6 +30,7 @@ const screamEl = document.querySelector("#creature-scream")
 const grassEl = document.querySelector(".grass")
 const welcomeBoxEl = document.querySelector(".welcomebox")
 const statusColumnEl = document.querySelector(".status-column")
+const initialTitleEl = document.querySelector(".initial-title")
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -58,6 +59,7 @@ function play() {
     pauseButtonEl.classList.remove("hidden")
     grassEl.classList.remove("hidden")
     statusColumnEl.classList.remove("hidden")
+    initialTitleEl.classList.add("hidden")
     welcomeBoxEl.classList.add("hidden")
     backgroundArcadeEl.play()
     autoMove()

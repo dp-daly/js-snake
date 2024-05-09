@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+.welcomewrap {
+   z-index: 2;
+   height: 75vh;
+   position: absolute; 
+   display: flex;
+   justify-content: flex-start;
+   align-content: flex-start;
+}
+
 .welcomebox {
     z-index: 2;
     position: absolute;
@@ -19,6 +28,17 @@
     font-size: 12px;
     cursor: pointer;
     align-self: center;
+}
+
+.initial-title {
+    display: flex;
+    background-image: url('../assets/serpens.js.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
 }
 
 body {
@@ -144,7 +164,7 @@ header {
 .container {
     height: 75vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin: 30px;
   }
@@ -185,6 +205,10 @@ header {
     background-image: url('../assets/croissant.gif');
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.gone {
+    display: none;
 }
 
 .hidden {

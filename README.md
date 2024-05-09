@@ -26,13 +26,13 @@ A landing page introduces the player to the game's mascot. A bee who gives game 
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.19.15.png)
 
-The player can control the snake sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to prevent issues with gameplay.
+The player can control the snake sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to avoid scroll issues during gameplay.
 
-The browser automatically plays background music for the game, and sound effects are included for eating croissants and game over. Background music can be toggled on and off using the buttons in the top-right corner.
+The browser automatically plays background music, and sound effects are included for eating croissants and game over. Background music can be toggled on and off using the buttons in the top-right corner.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.28.53.png)
 
-A restart button is provided in the console area to reset the game after game over.
+There is a restart button in the console area to reset the game after game over.
 
 ## Alternative theme
 
@@ -40,21 +40,21 @@ A restart button is provided in the console area to reset the game after game ov
 
 Players can choose an alternative dark mode for the game, which takes the form of a night theme with space objects. 
 
-The sprite transforms into an alien avatar and the bee character becomes an astronaut. The board is becomes a night sky.
+The sprite transforms into an alien avatar and the bee character becomes an astronaut. The board becomes a night sky.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.29.41.png)
 
 ## Accessibility
 
-High contrast colour pairings are used throughout the game. A dark mode was included to provide a wider palette range for diverse players.
+High contrast colour pairings are used throughout the game. A dark mode is included to provide a wider palette range for diverse players.
 
-Most graphics are added using CSS background-image, but aria labels are used within html to substitute for alt text.
+Most graphics are added using CSS background-image, but aria labels are used within html containers to substitute for image alt text.
 
 ## Improvements
 
 Future improvements may include: 
 
-* A rule to prevent the croissant from appearing on current sprite coordinates
+* A rule to prevent the croissant from appearing on current sprite coordinates.
 
 * Tailored character text for the alternative theme.
 
@@ -62,9 +62,11 @@ Future improvements may include:
 
 * Optimisation for smartphones and tablets.
 
+* High score display to last throughout the session, and possibly repeat visits.
+
 ## Acknowledgments
 
-Pixel art background illustrations for both themes are from craftpix.net, granted with royalty free usage in unlimited projects.
+Pixel art background illustrations for both themes from craftpix.net, granted with royalty free usage in unlimited projects.
 
 Snake sprite from anyrgb.com. 
 

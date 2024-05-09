@@ -62,3 +62,12 @@ Future improvements may include:
 
 * Optimisation for smartphones and tablets.
 
+## Acknowledgments
+
+Pixel art background illustrations for both themes are from craftpix.net, granted with royalty free usage in unlimited projects.
+
+Snake sprite from anyrgb.com. 
+
+Alien sprite and other graphics created on canva.com. 
+
+Background music and sound effects from zapsplat.com.

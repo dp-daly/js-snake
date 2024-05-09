@@ -145,6 +145,7 @@ header {
     align-items: center;
     align-content:  center;
     justify-content: center;
+    padding: 20px;
 }
 
 .pauseaudio-button  {
@@ -157,8 +158,22 @@ header {
     cursor: pointer;
 }
 
+.playaudio-button {
+    background-image: url('../assets/Play\ button.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    align-self: flex-end;
+    height: 75px;
+    width: 120px;
+    cursor: pointer;
+}
+
 .darkmode .pauseaudio-button {
     background-image: url('../assets/pause\ button\ darkmode.png');
+}
+
+.darkmode .playaudio-button {
+    background-image: url('../assets/play\ button\ darkmode.png');
 }
 
 .container {

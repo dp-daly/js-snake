@@ -24,6 +24,7 @@ const playAgainBtnEl = document.querySelector(".restart-button")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector(".theme-button")
 const pauseButtonEl = document.querySelector(".pauseaudio-button")
+const playButtonEl = document.querySelector(".playaudio-button")
 const backgroundArcadeEl = document.querySelector("#background-arcade")
 const munchEl = document.querySelector("#munch")
 const screamEl = document.querySelector("#creature-scream")
@@ -45,6 +46,7 @@ function init() {
     playAgainBtnEl.classList.add("hidden")
     themeButton.classList.add("hidden")
     pauseButtonEl.classList.add("hidden")
+    playButtonEl.classList.add("hidden")
     grassEl.classList.add("hidden")
     statusColumnEl.classList.add('hidden')
     //Create a button that when pressed runs init
@@ -229,6 +231,13 @@ themeButton.addEventListener("click", () => {
 pauseButtonEl.addEventListener("click", () => {
     backgroundArcadeEl.pause()
     pauseButtonEl.classList.add("hidden")
+    playButtonEl.classList.remove("hidden")
+})
+
+playButtonEl.addEventListener("click", () => {
+    backgroundArcadeEl.play()
+    playButtonEl.classList.add("hidden")
+    pauseButtonEl.classList.remove("hidden")
 })
 
 welcomeBoxEl.addEventListener("click", play)

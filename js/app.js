@@ -6,7 +6,7 @@ const width = 20
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [125, 126, 127]
+const snakePosition = [168, 169, 170]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex
@@ -27,6 +27,9 @@ const pauseButtonEl = document.querySelector(".pauseaudio-button")
 const backgroundArcadeEl = document.querySelector("#background-arcade")
 const munchEl = document.querySelector("#munch")
 const screamEl = document.querySelector("#creature-scream")
+const grassEl = document.querySelector(".grass")
+const welcomeBoxEl = document.querySelector(".welcomebox")
+const statusColumnEl = document.querySelector(".status-column")
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -37,14 +40,30 @@ cells.forEach((cell, i) => {
     }})
 
 function init() {
-    gameOver = false;
+    gameOver = true;
     playAgainBtnEl.classList.add("hidden")
+    themeButton.classList.add("hidden")
+    pauseButtonEl.classList.add("hidden")
+    grassEl.classList.add("hidden")
+    statusColumnEl.classList.add('hidden')
+    //Create a button that when pressed runs init
+}
+
+init();
+
+function play() {
+    gameOver = false;
+    playAgainBtnEl.classList.remove("hidden")
+    themeButton.classList.remove("hidden")
+    pauseButtonEl.classList.remove("hidden")
+    grassEl.classList.remove("hidden")
+    statusColumnEl.classList.remove("hidden")
+    welcomeBoxEl.classList.add("hidden")
     backgroundArcadeEl.play()
     autoMove()
     render()
 }
 
-init();
 croissantAppears();
 
 function autoMove() {
@@ -209,3 +228,5 @@ pauseButtonEl.addEventListener("click", () => {
     backgroundArcadeEl.pause()
     pauseButtonEl.classList.add("hidden")
 })
+
+welcomeBoxEl.addEventListener("click", play)

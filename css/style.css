@@ -143,9 +143,14 @@ header {
     flex: 2;
     flex-direction: column;
     align-items: center;
-    align-content:  center;
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
+    margin: 30px;
+}
+
+.music-controls-wrap {
+    display: flex;
+    align-self: flex-end;
 }
 
 .pauseaudio-button  {

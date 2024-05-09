@@ -78,7 +78,7 @@ function render() {
         screamEl.play();
         backgroundArcadeEl.pause();
         playAgainBtnEl.classList.remove("hidden")
-        gameMessageEl.innerText = "That stings.. GAME OVER"
+        gameMessageEl.innerText = "That stings.. GAME OVER!"
         croissantsEaten = 0
         cells.forEach((cell, index) => {
             cells[index].classList.remove("sprite")

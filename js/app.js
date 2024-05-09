@@ -23,6 +23,11 @@ let lastKeyDown = "ArrowDown"
 const playAgainBtnEl = document.querySelector(".restart-button")
 const gameMessageEl = document.querySelector("#message")
 const themeButton = document.querySelector(".theme-button")
+const pauseButtonEl = document.querySelector(".pauseaudio-button")
+const backgroundArcadeEl = document.querySelector("#background-arcade")
+const munchEl = document.querySelector("#munch")
+const screamEl = document.querySelector("#creature-scream")
+
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -34,6 +39,7 @@ cells.forEach((cell, i) => {
 function init() {
     gameOver = false;
     playAgainBtnEl.classList.add("hidden")
+    backgroundArcadeEl.play()
     autoMove()
     render()
 }
@@ -50,8 +56,9 @@ function autoMove() {
 function render() {
     if (gameOver === true) {
         clearInterval(timer)
+        screamEl.play();
+        backgroundArcadeEl.pause();
         playAgainBtnEl.classList.remove("hidden")
-        gameMessageEl.classList.remove("hidden")
         gameMessageEl.innerText = "That stings.. GAME OVER"
         croissantsEaten = 0
         cells.forEach((cell, index) => {
@@ -172,7 +179,8 @@ function croissantAppears() {
 function isCroissantEaten() {
     if (headIndex === croissantIndex) {
         cells[croissantIndex].classList.remove("croissant")
-        croissantAppears()
+        croissantAppears();
+        munchEl.play();
     }
 }
 
@@ -195,4 +203,9 @@ playAgainBtnEl.addEventListener("click", restart)
 
 themeButton.addEventListener("click", () => {
     document.body.classList.toggle("darkmode")
+})
+
+pauseButtonEl.addEventListener("click", () => {
+    backgroundArcadeEl.pause()
+    pauseButtonEl.classList.add("hidden")
 })

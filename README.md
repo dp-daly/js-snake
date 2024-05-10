@@ -18,11 +18,11 @@ The number of croissants eaten can be tracked in the console column on the left-
 
 ### Access
 
-You can play the game in your browser here: 
+You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
 
 ## Functionality
 
-A landing page introduces the player to the game's mascot. A bee who gives game state updates throughout.
+A landing page introduces the player to the game's mascot. A bee who gives some initial instructions and provides game state updates throughout.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.19.15.png)
 
@@ -32,7 +32,7 @@ The browser automatically plays background music, and sound effects are included
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.28.53.png)
 
-There is a restart button in the console area to reset the game after game over.
+There is a restart button in the console area to reset the game after game over. It is toggled off during gameplay.
 
 ## Alternative theme
 
@@ -46,9 +46,11 @@ The sprite transforms into an alien avatar and the bee character becomes an astr
 
 ## Accessibility
 
-High contrast colour pairings are used throughout the game. A dark mode is included to provide a wider palette range for diverse players.
+High contrast colour pairings are used throughout the game. A dark mode is included to provide a wider palette range for diverse players. Font sizes are at least 14px throughout.
 
 Most graphics are added using CSS background-image, but aria labels are used within html containers to substitute for image alt text.
+
+There are audio cues when the game starts and when the game is over.
 
 ## Improvements
 

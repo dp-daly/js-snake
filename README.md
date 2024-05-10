@@ -93,6 +93,8 @@ Future improvements may include:
 
 * Tailored character text and sound effects for the alternative theme.
 
+* Additional visual cues for game over, such as flashing sprites and red animated text in the console to add emphasis.
+
 * A condition to prevent the game from ending if any key other than an arrow key is pressed. 
 
 * Optimisation for smartphones and tablets.

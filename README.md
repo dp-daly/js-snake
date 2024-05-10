@@ -4,9 +4,9 @@
 
 ## Description
 
-Serpens.js is a version of the classic snake arcade game. The snake begins moving as soon as the game begins and the player must control its direction using keyboard arrow presses. 
+Serpens.js is a version of the classic snake arcade game. The snake sprite begins moving as soon as the game begins and the player must control its direction using keyboard arrow presses. 
 
-In this version, the snake sprite must eat croissants to grow and pick up speed. The more croissants the snake eats the faster it gets, and the more difficult it is for the player to control.
+In this version, the snake must eat croissants to grow and pick up speed. The more croissants it eats the faster it gets, and the more difficult it is for the player to control.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.17.52.png)
 
@@ -22,11 +22,11 @@ You can play the game in your computer browser here: https://dp-daly.github.io/j
 
 ### Functionality
 
-A landing page introduces the player to the game's mascot. A bee who gives some initial instructions and provides game state updates throughout.
+A landing page introduces the player to the game's mascot: a bee who gives some initial instructions and provides game state updates throughout.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.19.15.png)
 
-The player can control the snake sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to avoid scroll issues during gameplay.
+The player can control the sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to avoid scroll issues during gameplay.
 
 The browser automatically plays background music, and sound effects are included for eating croissants and game over. Background music can be toggled on and off using the buttons in the top-right corner.
 
@@ -40,7 +40,7 @@ There is a restart button in the console area to reset the game after game over.
 
 Players can choose an alternative dark mode for the game, which takes the form of a night theme with space objects. 
 
-The sprite transforms into an alien avatar and the bee character becomes an astronaut. The board becomes a night sky.
+The sprite transforms into an alien avatar and the mascot becomes an astronaut. The board becomes a night sky.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.29.41.png)
 
@@ -83,7 +83,7 @@ However, if the snake eats a croissant and 'grows', the final value is not remov
 
 I initially attempted to achieve the slither motion using array iterator methods such as .map() and .forEach(), but I was unable to achieve the dynamism required of the game. Moreover, I found the approach detailed here to be a much more DRY solution.
 
-Other core logic included creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls or indeed its own body.
+Other core logic included creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls, or indeed its own body.
 
 ## Improvements
 
@@ -91,7 +91,7 @@ Future improvements may include:
 
 * A rule to prevent the croissant from appearing on current sprite coordinates.
 
-* Tailored character text for the alternative theme.
+* Tailored character text and sound effects for the alternative theme.
 
 * A condition to prevent the game from ending if any key other than an arrow key is pressed. 
 

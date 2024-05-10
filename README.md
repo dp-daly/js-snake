@@ -16,6 +16,8 @@ The number of croissants eaten can be tracked in the console column on the left-
 
 ## Getting started
 
+### Access
+
 You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
 
 ### Functionality

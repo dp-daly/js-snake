@@ -2,6 +2,10 @@
 
 ![](./README%20images/overview.png)
 
+## Access
+
+You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
+
 ## Description
 
 Serpens.js is a version of the classic snake arcade game. The snake begins moving as soon as the game begins and the player must control its direction using keyboard arrow presses. 
@@ -16,9 +20,38 @@ The number of croissants eaten can be tracked in the console column on the left-
 
 ![](./README%20images/score.png)
 
-### Access
+## Technology
 
-You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
+### Languages
+- Javascript
+- HTML
+- CSS
+
+### Select logic
+
+The sprite is dynamically created throughout the game by applying a class of "sprite" to individual cells within an HTML/CSS grid.
+
+To represent movement, the "sprite" class is removed from each cell after each interval. 
+
+![](./README%20images/sprite-class-add-remove.png)
+
+The default starting position for the sprite, i.e. the indexes at which the sprite class is initially applied, are represented in a const variable called snakePosition. 
+
+![](./README%20images/snakePosition%20const.png)
+
+An autoMove() function moves the snake in a default starter direction at a pace of an interval - initially 350ms.
+
+To create the necessary 'slither' motion of the snake, it was necessary to consider the first index in the array as the 'head' and the remaining values its body. The 'head' value is updated with a direction value equivalent to that of the user input (please refer to the moveSnake() function in app.js for direction logic using arrow presses).
+
+To account for the addition to the start of the array, the final index is removed using .pop(). 
+
+However, if the snake eats a croissant and 'grows', the final value is not removed. 
+
+![](./README%20images/slither%20logic.png)
+
+I initially attempted to achieve the slither motion using array iterator methods such as .map() and .forEach(), but I was unable to achieve the dynamism required of the game. Moreover, I found the approach detailed here to be a much more DRY solution.
+
+Other core logic involved creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head the walls or indeed its own body.
 
 ## Functionality
 

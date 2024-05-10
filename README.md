@@ -49,7 +49,7 @@ However, if the snake eats a croissant and 'grows', the final value is not remov
 
 I initially attempted to achieve the slither motion using array iterator methods such as .map() and .forEach(), but I was unable to achieve the dynamism required of the game. Moreover, I found the approach detailed here to be a much more DRY solution.
 
-Other core logic involved creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls or indeed its own body.
+Other core logic included creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls or indeed its own body.
 
 ## Functionality
 

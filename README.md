@@ -14,9 +14,41 @@ The number of croissants eaten can be tracked in the console column on the left-
 
 ![](./README%20images/score.png)
 
-## Access
+## Getting started
 
 You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
+
+### Functionality
+
+A landing page introduces the player to the game's mascot. A bee who gives some initial instructions and provides game state updates throughout.
+
+![](./README%20images/Screenshot%202024-05-09%20at%2016.19.15.png)
+
+The player can control the snake sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to avoid scroll issues during gameplay.
+
+The browser automatically plays background music, and sound effects are included for eating croissants and game over. Background music can be toggled on and off using the buttons in the top-right corner.
+
+![](./README%20images/Screenshot%202024-05-09%20at%2016.28.53.png)
+
+There is a restart button in the console area to reset the game after game over. It is toggled off during gameplay.
+
+### Alternative theme
+
+![](./README%20images/Screenshot%202024-05-09%20at%2016.29.10.png)
+
+Players can choose an alternative dark mode for the game, which takes the form of a night theme with space objects. 
+
+The sprite transforms into an alien avatar and the bee character becomes an astronaut. The board becomes a night sky.
+
+![](./README%20images/Screenshot%202024-05-09%20at%2016.29.41.png)
+
+## Accessibility
+
+High contrast colour pairings are used throughout the game. A dark mode is included to provide a wider palette range for diverse players. Font sizes are at least 14px throughout.
+
+Most graphics are added using CSS background-image, but aria labels are used within html containers to substitute for image alt text.
+
+There are audio cues when the game starts and when the game is over.
 
 ## Technology
 
@@ -50,38 +82,6 @@ However, if the snake eats a croissant and 'grows', the final value is not remov
 I initially attempted to achieve the slither motion using array iterator methods such as .map() and .forEach(), but I was unable to achieve the dynamism required of the game. Moreover, I found the approach detailed here to be a much more DRY solution.
 
 Other core logic included creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls or indeed its own body.
-
-## Functionality
-
-A landing page introduces the player to the game's mascot. A bee who gives some initial instructions and provides game state updates throughout.
-
-![](./README%20images/Screenshot%202024-05-09%20at%2016.19.15.png)
-
-The player can control the snake sprite using keyboard arrow presses. The default scroll is prevented on arrow keys to avoid scroll issues during gameplay.
-
-The browser automatically plays background music, and sound effects are included for eating croissants and game over. Background music can be toggled on and off using the buttons in the top-right corner.
-
-![](./README%20images/Screenshot%202024-05-09%20at%2016.28.53.png)
-
-There is a restart button in the console area to reset the game after game over. It is toggled off during gameplay.
-
-## Alternative theme
-
-![](./README%20images/Screenshot%202024-05-09%20at%2016.29.10.png)
-
-Players can choose an alternative dark mode for the game, which takes the form of a night theme with space objects. 
-
-The sprite transforms into an alien avatar and the bee character becomes an astronaut. The board becomes a night sky.
-
-![](./README%20images/Screenshot%202024-05-09%20at%2016.29.41.png)
-
-## Accessibility
-
-High contrast colour pairings are used throughout the game. A dark mode is included to provide a wider palette range for diverse players. Font sizes are at least 14px throughout.
-
-Most graphics are added using CSS background-image, but aria labels are used within html containers to substitute for image alt text.
-
-There are audio cues when the game starts and when the game is over.
 
 ## Improvements
 

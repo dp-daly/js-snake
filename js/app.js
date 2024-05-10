@@ -3,10 +3,11 @@
 const cells = document.querySelectorAll(".grass div");
 const walls = document.querySelectorAll(".grass div.wall");
 const width = 20
+const snakePosition = [168, 169, 170]
+
 
 /*-------------------------------- Variables --------------------------------*/
 
-const snakePosition = [168, 169, 170]
 let headIndex 
 let currentHeadIndex
 let currentBodyIndex

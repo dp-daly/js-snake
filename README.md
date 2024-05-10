@@ -33,7 +33,7 @@ To represent movement, the "sprite" class is removed from each cell after each i
 
 ![](./README%20images/sprite-class-add-remove.png)
 
-The default starting position for the sprite, i.e. the indexes at which the sprite class is initially applied, are represented in a const variable called snakePosition. 
+The default starting position for the sprite, i.e. the indexes at which the sprite class is initially applied, are represented in a const declaration called snakePosition. 
 
 ![](./README%20images/snakePosition%20const.png)
 

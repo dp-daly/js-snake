@@ -6,9 +6,7 @@
 
 Serpens.js is a version of the classic snake arcade game. The snake begins moving as soon as the game begins and the player must control its direction using keyboard arrow presses. 
 
-In this version, the snake sprite must eat croissants to grow and pick up speed.
-
-The more croissants the snake eats the faster it gets, and the more difficult it is for the player to control.
+In this version, the snake sprite must eat croissants to grow and pick up speed. The more croissants the snake eats the faster it gets, and the more difficult it is for the player to control.
 
 ![](./README%20images/Screenshot%202024-05-09%20at%2016.17.52.png)
 

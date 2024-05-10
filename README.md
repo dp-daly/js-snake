@@ -2,10 +2,6 @@
 
 ![](./README%20images/overview.png)
 
-## Access
-
-You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
-
 ## Description
 
 Serpens.js is a version of the classic snake arcade game. The snake begins moving as soon as the game begins and the player must control its direction using keyboard arrow presses. 
@@ -19,6 +15,10 @@ The more croissants the snake eats the faster it gets, and the more difficult it
 The number of croissants eaten can be tracked in the console column on the left-hand side of the page as a rudimentary way to keep score.
 
 ![](./README%20images/score.png)
+
+## Access
+
+You can play the game in your computer browser here: https://dp-daly.github.io/js-snake/
 
 ## Technology
 
@@ -51,7 +51,7 @@ However, if the snake eats a croissant and 'grows', the final value is not remov
 
 I initially attempted to achieve the slither motion using array iterator methods such as .map() and .forEach(), but I was unable to achieve the dynamism required of the game. Moreover, I found the approach detailed here to be a much more DRY solution.
 
-Other core logic involved creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head the walls or indeed its own body.
+Other core logic involved creating the illusion of solid walls for the grid, as well as game over consequences for collisions between the snake's head and the walls or indeed its own body.
 
 ## Functionality
 
